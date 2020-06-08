@@ -11,7 +11,7 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$asm-ext-primary: mat-palette($mat-blue);
+$asm-ext-primary: mat-palette($mat-blue, 800);
 $asm-ext-accent: mat-palette($mat-amber, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
@@ -25,5 +25,14 @@ $asm-ext-theme: mat-light-theme($asm-ext-primary, $asm-ext-accent, $asm-ext-warn
 // that you are using.
 @include angular-material-theme($asm-ext-theme);
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html {
+  width: 350px;
+  height: 400px;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 5px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
