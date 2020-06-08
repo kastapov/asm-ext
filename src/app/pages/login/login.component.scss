@@ -15,3 +15,12 @@
 .login-form mat-form-field {
   width: 100%;
 }
+
+.login-form__error {
+  color: white;
+  font-size: 12px;
+  background-color: #e70000;
+  border-radius: 3px;
+  text-align: left;
+  padding: 2px 10px;
+}
