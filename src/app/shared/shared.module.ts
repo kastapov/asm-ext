@@ -2,6 +2,7 @@ import {NgModule} from "@angular/core";
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from './components/material/material.module';
 import { LogoComponent } from './layout/logo/logo.component';
+import { SpinnerComponent } from './layout/spinner/spinner.component';
 
 @NgModule({
   imports: [
@@ -12,6 +13,6 @@ import { LogoComponent } from './layout/logo/logo.component';
     MaterialModule,
     LogoComponent
   ],
-  declarations: [LogoComponent],
+  declarations: [LogoComponent, SpinnerComponent],
 })
 export class SharedModule { }
