@@ -6,10 +6,10 @@
   },
   "files": [
     "src/main.ts",
-    "src/polyfills.ts"
+    "src/polyfills.ts",
+    "src/background.ts"
   ],
   "include": [
-    "src/background.ts",
     "src/**/*.d.ts"
   ]
 }
