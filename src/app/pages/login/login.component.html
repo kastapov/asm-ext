@@ -5,11 +5,11 @@
       <form>
         <mat-form-field>
           <mat-label>E-mail</mat-label>
-          <input matInput [(ngModel)]="username" name="username" required>
+          <input matInput [(ngModel)]="credentials.email" name="email" required>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Password</mat-label>
-          <input matInput [(ngModel)]="password" type="password" name="password" required>
+          <input matInput [(ngModel)]="credentials.password" type="password" name="password" required>
         </mat-form-field>
       </form>
       <div class="login-form__error" *ngIf="errorMessage">{{ errorMessage }}</div>

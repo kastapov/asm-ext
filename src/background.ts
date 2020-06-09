@@ -1,9 +1,29 @@
-chrome.browserAction.setBadgeBackgroundColor({color: 'red'});
-chrome.browserAction.setBadgeText({text:"!"});
+import { ActionEnum } from './app/types/messaging/ActionEnum';
+import { processLogin } from './background/login';
+import { BackgroundResponse } from './app/types/messaging/BacgroundResponse';
 
-chrome.runtime.onMessage.addListener(function(message, sender) {
-  if (message.action === "ticket_obtained") {
-    chrome.browserAction.setBadgeText({text:"2000"});
-    chrome.browserAction.setBadgeBackgroundColor({color: 'green'});
+chrome.runtime.onMessage.addListener(handleMessage);
+
+function handleMessage(message, sender, sendResponse) {
+  switch (message.action) {
+    case (ActionEnum.LOGIN): {
+      processLogin(message.payload)
+        .then(sendWrappedResponse(sendResponse))
+        .catch((response) => {
+          sendResponse(BackgroundResponse.FAIL(response));
+        });
+      return true;
+    }
   }
-});
+}
+
+function sendWrappedResponse(sendResponse) {
+  return ({data}) => {
+    if (data.error) {
+      sendResponse(BackgroundResponse.ERROR(data));
+    } else {
+      sendResponse(BackgroundResponse.OK(data));
+    }
+  }
+
+}
