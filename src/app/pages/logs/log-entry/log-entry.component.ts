@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ILogEntry } from '../../../types/ILogEntry';
+import { BASE_URL } from '../../../../background/config';
 
 @Component({
   selector: 'app-log-entry',
@@ -13,6 +14,12 @@ export class LogEntryComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  openLog() {
+    chrome.tabs.create({
+      url: `${BASE_URL}/reports/check/detail/${this.logEntry.monitor.id}/${this.logEntry.id}`
+    });
   }
 
 }
