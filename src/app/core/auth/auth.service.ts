@@ -39,8 +39,7 @@ export class AuthService {
           this.authorise(access_token);
           return true;
         })
-        .catch(error => {
-          console.log(error);
+        .catch(() => {
           return false;
         });
     }

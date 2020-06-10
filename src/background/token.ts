@@ -1,30 +1,32 @@
 import axios, { AxiosPromise } from 'axios';
 import { API_BASE } from './config';
 import { AccessToken } from '../app/types/messaging/login/AccessToken';
+import { loadFromStorage, saveIntoStorage } from './storage';
 
-let tokenHeader: string;
-
-export function getTokenHeader() {
-  return tokenHeader;
-}
+const TOKEN_NAME= 'token';
 
 export function setToken(token) {
-  tokenHeader = `Bearer ${token}`;
+  saveIntoStorage(TOKEN_NAME, `Bearer ${token}`);
+}
+
+export function getTokenHeader(): Promise<AccessToken> {
+  return loadFromStorage(TOKEN_NAME);
 }
 
 export function removeToken() {
-  tokenHeader = null;
+  saveIntoStorage(TOKEN_NAME, null);
 }
 
-export function validateToken(): Promise<any> {
+export async function validateToken(): Promise<AccessToken> {
+  const tokenHeader = await loadFromStorage(TOKEN_NAME);
   if (!tokenHeader) {
     return Promise.reject();
   } else {
-    return doTokenValidation().then(() => new AccessToken(tokenHeader));
+    return doTokenValidation(tokenHeader).then(() => new AccessToken(tokenHeader));
   }
 }
 
-function doTokenValidation(): AxiosPromise {
+function doTokenValidation(tokenHeader: string): AxiosPromise {
   return axios({
     url: `${API_BASE}/oauth2`,
     method: 'get',
