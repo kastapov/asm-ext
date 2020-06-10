@@ -1,7 +1,7 @@
 import { ActionEnum } from './app/types/messaging/ActionEnum';
 import { processLogin } from './background/login';
 import { BackgroundResponse } from './app/types/messaging/BacgroundResponse';
-import { removeToken, validateToken } from './background/token';
+import { invalidateToken, removeToken, validateToken } from './background/token';
 import axios, { AxiosResponse } from 'axios';
 
 axios.interceptors.response.use(c => c, (error) => {
@@ -25,6 +25,14 @@ function handleMessage(message, sender, sendResponse) {
     }
     case (ActionEnum.CHECK_LOGIN): {
       validateToken()
+        .then(sendWrappedResponse(sendResponse))
+        .catch((response) => {
+          sendResponse(BackgroundResponse.FAIL(response));
+        });
+      return true;
+    }
+    case (ActionEnum.LOGOUT): {
+      invalidateToken()
         .then(sendWrappedResponse(sendResponse))
         .catch((response) => {
           sendResponse(BackgroundResponse.FAIL(response));

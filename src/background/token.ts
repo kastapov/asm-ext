@@ -35,3 +35,24 @@ function doTokenValidation(tokenHeader: string): AxiosPromise {
     },
   });
 }
+
+export async function invalidateToken(): Promise<any> {
+  const tokenHeader = await loadFromStorage(TOKEN_NAME);
+  if (!tokenHeader) {
+    return Promise.resolve();
+  } else {
+    return doInvalidateToken(tokenHeader);
+  }
+}
+
+function doInvalidateToken(tokenHeader: string): AxiosPromise {
+  return axios({
+    url: `${API_BASE}/oauth2/token`,
+    method: 'delete',
+    headers: {
+      'Authorization': tokenHeader,
+    },
+  });
+}
+
+

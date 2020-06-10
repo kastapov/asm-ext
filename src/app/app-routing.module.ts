@@ -16,7 +16,7 @@ const routes: Routes = [
   {
     path: 'widget',
     component: MainLayoutComponent,
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
     children: [
       {path: '', component: WidgetComponent}
     ]
@@ -24,7 +24,7 @@ const routes: Routes = [
   {
     path: 'logs',
     component: MainLayoutComponent,
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
     children: [
       {path: '', component: LogsComponent}
     ]
@@ -32,7 +32,7 @@ const routes: Routes = [
   {
     path: 'monitors',
     component: MainLayoutComponent,
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
     children: [
       {path: '', component: MonitorsComponent}
     ]

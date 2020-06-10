@@ -29,6 +29,17 @@ export class AuthService {
     this.router.navigate(['widget']);
   }
 
+  logout(): void {
+    this.backgroundService.logout()
+      .subscribe(() => this.unAuthorise())
+  }
+
+  private unAuthorise(): void {
+    this.isAuthorized = false;
+    this.accessToken = null;
+    this.router.navigate(['login']);
+  }
+
   checkAuthorisation(): Promise<boolean> {
     if (this.isAuthorized) {
       return Promise.resolve(true);
