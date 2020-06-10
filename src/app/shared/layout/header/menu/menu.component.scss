@@ -1,0 +1,56 @@
+@import 'src/styles';
+
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.menu__button {
+  width: 35px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu__button--active {
+  box-shadow: 0 3px 1px -1px rgb(21, 101, 192, 0.3);
+
+  .mat-icon {
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2));
+    color: mat-color($asm-ext-primary);
+  }
+}
+
+.menu__button-logs {
+  .mat-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .material-icons {
+    font-size: 32px;
+  }
+}
+
+.menu__button-logs {
+  .mat-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .material-icons {
+    font-size: 32px;
+  }
+}
+
+.mat-icon {
+  color: mat-color(mat-palette($mat-gray, 500));
+  width: 28px;
+  height: 28px;
+}
+
+.material-icons {
+  font-size: 28px;
+}

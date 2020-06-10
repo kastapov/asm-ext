@@ -1,0 +1,42 @@
+@import 'src/styles';
+
+.header {
+  height: 50px;
+  background-color: #fafafa;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px 0 rgba(17,17,34,.2);
+
+  app-menu {
+    flex: 0 0 50%;
+  }
+
+  app-logo {
+    position: absolute;
+    width: 33px;
+    left: 15px;
+    top: 12px;
+  }
+}
+
+.header__settings {
+  position: absolute;
+}
+
+.header__logout {
+  position: absolute;
+  top: 14px;
+  right: 17px;
+
+  .mat-icon {
+    color: mat-color($asm-ext-primary);
+    width: 24px;
+    height: 24px;
+  }
+
+  .material-icons {
+    font-size: 24px;
+  }
+}

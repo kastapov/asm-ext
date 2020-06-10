@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { WidgetComponent } from './widget/widget.component';
 import { SharedModule } from '../shared/shared.module';
+import { LogsComponent } from './logs/logs.component';
+import { MonitorsComponent } from './monitors/monitors.component';
 
 @NgModule({
   imports: [
@@ -12,12 +14,12 @@ import { SharedModule } from '../shared/shared.module';
     FormsModule
   ],
   exports: [
-    LoginComponent,
-    WidgetComponent
   ],
   declarations: [
     LoginComponent,
-    WidgetComponent
+    WidgetComponent,
+    LogsComponent,
+    MonitorsComponent
   ],
 })
 export class PagesModule { }
