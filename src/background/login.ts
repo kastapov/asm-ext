@@ -24,7 +24,7 @@ function doAuth(credentials: LoginCredentials): AxiosPromise<AccessToken> {
   }
 
   return axios({
-    url: `${API_BASE}/oauth2/authdd`,
+    url: `${API_BASE}/oauth2/auth`,
     method: 'post',
     data: oAuthParameters
   });

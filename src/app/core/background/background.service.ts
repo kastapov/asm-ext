@@ -19,15 +19,11 @@ export class BackgroundService {
     return this.messaging.send(new LoginMessage(credentials));
   }
 
-  checkLogin(): Observable<Payload> {
-    return this.messaging.send(new Message(ActionEnum.CHECK_LOGIN));
-  }
-
   logout(): Observable<Payload> {
     return this.messaging.send(new Message(ActionEnum.LOGOUT));
   }
 
-  checkTokenValidity() {
+  checkTokenValidity(): Observable<AccessToken> {
     return this.messaging.send(new Message(ActionEnum.CHECK_LOGIN));
   }
 }

@@ -4,38 +4,45 @@ import { LoginCredentials } from '../../types/messaging/login/LoginCredentials';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Payload } from '../../types/messaging/Payload';
+import { AccessToken } from '../../types/messaging/login/AccessToken';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  isAuthorized = false;
+  isAuthorized: boolean = false;
+  accessToken: string = null;
 
   constructor(private backgroundService: BackgroundService, private router: Router) {
   }
 
-  login(credentials: LoginCredentials): Observable<Payload> {
+  login(credentials: LoginCredentials): Observable<AccessToken> {
     return this.backgroundService.login(credentials)
       .pipe(
-        tap(() => this.authorise())
+        tap(({access_token}) => this.authorise(access_token))
       );
   }
 
-  private authorise() {
+  private authorise(accessToken: string) {
     this.isAuthorized = true;
+    this.accessToken = accessToken;
     this.router.navigate(['widget']);
-  }
-
-  private isTokenActive(): Promise<boolean> {
-    return this.backgroundService.checkTokenValidity().toPromise();
   }
 
   checkAuthorisation(): Promise<boolean> {
     if (this.isAuthorized) {
       return Promise.resolve(true);
     } else {
-      return this.isTokenActive();
+      return this.backgroundService.checkTokenValidity()
+        .toPromise()
+        .then(({access_token}) => {
+          this.authorise(access_token);
+          return true;
+        })
+        .catch(error => {
+          console.log(error);
+          return false;
+        });
     }
   }
 }
