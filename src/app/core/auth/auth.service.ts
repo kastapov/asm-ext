@@ -10,13 +10,13 @@ import { AccessToken } from '../../types/messaging/login/AccessToken';
   providedIn: 'root'
 })
 export class AuthService {
-  isAuthorized: boolean = false;
-  accessToken: string = null;
+  private isAuthorized: boolean = false;
+  private accessToken: string = null;
 
   constructor(private backgroundService: BackgroundService, private router: Router) {
   }
 
-  login(credentials: LoginCredentials): Observable<AccessToken> {
+  public login(credentials: LoginCredentials): Observable<AccessToken> {
     return this.backgroundService.login(credentials)
       .pipe(
         tap(({access_token}) => this.authorise(access_token))
@@ -26,10 +26,10 @@ export class AuthService {
   private authorise(accessToken: string) {
     this.isAuthorized = true;
     this.accessToken = accessToken;
-    this.router.navigate(['widget']);
+    this.router.navigate(['logs']);
   }
 
-  logout(): void {
+  public logout(): void {
     this.backgroundService.logout()
       .subscribe(() => this.unAuthorise())
   }
@@ -40,7 +40,7 @@ export class AuthService {
     this.router.navigate(['login']);
   }
 
-  checkAuthorisation(): Promise<boolean> {
+  public checkAuthorisation(): Promise<boolean> {
     if (this.isAuthorized) {
       return Promise.resolve(true);
     } else {
@@ -54,5 +54,9 @@ export class AuthService {
           return false;
         });
     }
+  }
+
+  get authToken(): string {
+    return this.accessToken;
   }
 }

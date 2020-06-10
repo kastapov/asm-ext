@@ -1,0 +1,90 @@
+@import 'src/styles';
+
+.mat-expansion-panel {
+  margin: 3px;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px -1px 4px 0px rgba(0, 0, 0, 0.12);
+}
+
+.mat-expansion-panel-header-description {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.mat-expansion-panel-header {
+  font-size: 13px;
+  color: #333333;
+  padding: 0 16px;
+}
+
+.log-entry__time {
+  flex: 0 0 56px;
+}
+
+.log-entry__name {
+  flex: 1 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.log-entry__monitor-type {
+  flex: 0 0 50px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.log-entry__result-code {
+  flex: 0 0 50px;
+}
+
+.mat-expansion-panel::after {
+  position: absolute;
+  top: 0;
+  display: block;
+  content: ' ';
+  width: 5px;
+  height: 100%;
+}
+
+.log-entry--ok .mat-expansion-panel::after {
+  background-color: mat-color(mat-palette($mat-green, 500));
+}
+
+.log-entry--unconfirmed_error .mat-expansion-panel::after {
+  background-color: mat-color(mat-palette($mat-gray, 500));
+}
+
+.log-entry--confirmed_error .mat-expansion-panel::after {
+  background-color: mat-color(mat-palette($mat-red, 500));
+}
+
+.log-entry--maintenance .mat-expansion-panel::after {
+  background-color: mat-color(mat-palette($mat-blue, 500));
+}
+
+.log-entry--unscheduled .mat-expansion-panel::after {
+  background-color: #333333;
+}
+
+.mat-accordion .mat-expansion-panel:last-of-type {
+  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.mat-accordion .mat-expansion-panel:first-of-type {
+  border-top-right-radius: 2px;
+  border-top-left-radius: 2px;
+}
+
+.mat-accordion .mat-expansion-panel {
+  border-radius: 2px;
+}
+
+.log-entry ::ng-deep .mat-expansion-panel-body {
+  padding: 0 16px 8px;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.details__time-rov {
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,0 +1,16 @@
+.main {
+  height: 340px;
+  overflow-y: auto;
+}
+
+.main::-webkit-scrollbar {
+  width: 5px;
+}
+
+.main::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+.main::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.5);
+}

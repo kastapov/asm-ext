@@ -6,12 +6,13 @@ import { WidgetComponent } from './widget/widget.component';
 import { SharedModule } from '../shared/shared.module';
 import { LogsComponent } from './logs/logs.component';
 import { MonitorsComponent } from './monitors/monitors.component';
+import { LogEntryComponent } from './logs/log-entry/log-entry.component';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
-    FormsModule
+    FormsModule,
   ],
   exports: [
   ],
@@ -19,7 +20,8 @@ import { MonitorsComponent } from './monitors/monitors.component';
     LoginComponent,
     WidgetComponent,
     LogsComponent,
-    MonitorsComponent
+    MonitorsComponent,
+    LogEntryComponent
   ],
 })
 export class PagesModule { }
