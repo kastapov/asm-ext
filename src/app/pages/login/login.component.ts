@@ -16,6 +16,6 @@ export class LoginComponent {
   doLogin() {
     this.authService
       .login(this.credentials)
-      .subscribe(() => {}, err => this.errorMessage = err.error || err.message);
+      .subscribe(() => { }, err => this.errorMessage = err.error || err.message);
   }
 }

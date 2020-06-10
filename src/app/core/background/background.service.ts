@@ -27,5 +27,7 @@ export class BackgroundService {
     return this.messaging.send(new Message(ActionEnum.LOGOUT));
   }
 
-
+  checkTokenValidity() {
+    return this.messaging.send(new Message(ActionEnum.CHECK_LOGIN));
+  }
 }
