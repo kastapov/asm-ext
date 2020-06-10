@@ -15,6 +15,10 @@
   padding: 0 16px;
 }
 
+.mat-accordion .mat-expansion-panel.mat-expansion-panel-spacing.mat-expanded {
+  margin-bottom: 10px;
+}
+
 .log-entry__time {
   flex: 0 0 56px;
 }
@@ -40,7 +44,7 @@
   top: 0;
   display: block;
   content: ' ';
-  width: 5px;
+  width: 6px;
   height: 100%;
 }
 
