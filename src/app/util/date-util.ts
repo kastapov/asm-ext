@@ -1,15 +1,15 @@
 export class DateUtil {
-  public static getTodayDateEncoded(): string {
-    return DateUtil.toIsoStringUrlencoded(new Date());
+  public static getTodayDateISO(): string {
+    return DateUtil.toISOString(new Date());
   }
 
-  public static getDateSubHoursEncoded(subHours: number): string {
+  public static getDateSubHoursISO(subHours: number): string {
     const date = new Date();
     date.setHours(date.getHours() - subHours);
-    return DateUtil.toIsoStringUrlencoded(date);
+    return DateUtil.toISOString(date);
   }
 
-  public static toIsoStringUrlencoded(date: Date): string {
+  public static toISOString(date: Date): string {
     return `${date.toISOString().slice(0, -5)}+00:00`;
   }
 }

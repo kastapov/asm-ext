@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { API_BASE } from '../../../background/config';
 import { interval, Observable } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
-import { DateUtil } from '../../util/date-util';
 import { ILog } from '../../types/log/ILog';
 import { LogsRequest } from '../../types/log/LogsRequest';
 
@@ -27,8 +26,7 @@ export class LogsService {
   }
 
   private loadLogs(): Observable<Array<ILog>> {
-    const lastHour = DateUtil.getDateSubHoursEncoded(2);
-    const request = new LogsRequest(lastHour);
+    const request = new LogsRequest();
     return this.http.get<Array<ILog>>(`${API_BASE}/log?`, { params: request.toHttpParams() });
   }
 }

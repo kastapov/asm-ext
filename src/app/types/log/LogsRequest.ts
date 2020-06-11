@@ -7,10 +7,8 @@ export class LogsRequest extends RequestParams {
   extended: boolean;
   limit: number;
 
-  constructor(from: string = undefined) {
+  constructor() {
     super();
-    this.from = from;
-    this.extended = true;
     this.limit = 50;
   }
 }
