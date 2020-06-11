@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ChromeService } from '../../../core/service/chrome.service';
 
 @Component({
   selector: 'app-logo',
@@ -7,9 +9,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private chromeService: ChromeService) {
+  }
 
   ngOnInit(): void {
   }
 
+  openAsm() {
+    switch (this.router.url) {
+      case('/widget'): {
+        this.chromeService.openTab(`charts.php`);
+        break;
+      }
+      case('/logs'): {
+        this.chromeService.openTab(`logviewer.php`);
+        break;
+      }
+      case('/monitors'): {
+        this.chromeService.openTab(`settings.php`);
+        break;
+      }
+      default: {
+        this.chromeService.openTab(``);
+      }
+    }
+  }
 }

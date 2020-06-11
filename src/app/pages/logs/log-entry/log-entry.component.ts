@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ILogEntry } from '../../../types/ILogEntry';
 import { BASE_URL } from '../../../../background/config';
+import { ChromeService } from '../../../core/service/chrome.service';
 
 @Component({
   selector: 'app-log-entry',
@@ -11,15 +12,13 @@ export class LogEntryComponent implements OnInit {
 
   @Input() logEntry: ILogEntry;
 
-  constructor() { }
+  constructor(private chromeService: ChromeService) { }
 
   ngOnInit(): void {
   }
 
   openLog() {
-    chrome.tabs.create({
-      url: `${BASE_URL}/reports/check/detail/${this.logEntry.monitor.id}/${this.logEntry.id}`
-    });
+    this.chromeService.openTab(`reports/check/detail/${this.logEntry.monitor.id}/${this.logEntry.id}`);
   }
 
 }
