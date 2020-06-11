@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { IMessage } from '../../types/messaging/IMessage';
 import { IResponse } from '../../types/messaging/IResponse';
 import { ResponseStateEnum } from '../../types/messaging/ResponseStateEnum';
+import { NgProgress } from 'ngx-progressbar';
 
 
 @Injectable({
@@ -10,22 +11,29 @@ import { ResponseStateEnum } from '../../types/messaging/ResponseStateEnum';
 })
 export class MessagingService {
 
-  constructor(private zone: NgZone) {
+  constructor(private zone: NgZone, private ngProgress: NgProgress) {
   }
 
   send(message: IMessage): Observable<any> {
+    this.ngProgress.ref().start();
     return new Observable((observer) => {
         try {
           chrome.runtime.sendMessage(message, (response: IResponse) => {
-            if (response.state == ResponseStateEnum.ERROR || response.state == ResponseStateEnum.FAIL) {
-              this.zone.run(() => { observer.error(response.payload) });
-            } else {
-              this.zone.run(() => { observer.next(response.payload)});
-            }
-            this.zone.run(() => { observer.complete()});
+            this.zone.run(() => {
+              if (response.state == ResponseStateEnum.ERROR || response.state == ResponseStateEnum.FAIL) {
+                  observer.error(response.payload);
+              } else {
+                  observer.next(response.payload);
+              }
+              observer.complete();
+              this.ngProgress.ref().complete();
+            });
           });
         } catch (e) {
-          this.zone.run(() => { observer.error(e)});
+          this.zone.run(() => {
+            observer.error(e);
+            this.ngProgress.ref().complete();
+          });
         }
       });
   }

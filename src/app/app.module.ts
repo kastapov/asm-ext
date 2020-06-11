@@ -8,6 +8,8 @@ import { SharedModule } from './shared/shared.module';
 import { PagesModule } from './pages/pages.module';
 import { HttpClientModule } from '@angular/common/http';
 import { httpInterceptorProviders } from './core/interceptor';
+import { NgProgressModule } from 'ngx-progressbar';
+import { NgProgressHttpModule } from 'ngx-progressbar/http';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { httpInterceptorProviders } from './core/interceptor';
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
-    PagesModule
+    PagesModule,
+    NgProgressModule,
+    NgProgressHttpModule,
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

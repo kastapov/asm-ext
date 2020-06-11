@@ -17,7 +17,7 @@ import { MainLayoutComponent } from './layout/main-layout/main-layout.component'
   exports: [
     MaterialModule,
     LogoComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   declarations: [LogoComponent, SpinnerComponent, HeaderComponent, MenuComponent, MainLayoutComponent],
 })
