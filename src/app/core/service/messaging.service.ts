@@ -17,24 +17,24 @@ export class MessagingService {
   send(message: IMessage): Observable<any> {
     this.ngProgress.ref().start();
     return new Observable((observer) => {
-        try {
-          chrome.runtime.sendMessage(message, (response: IResponse) => {
-            this.zone.run(() => {
-              if (response.state == ResponseStateEnum.ERROR || response.state == ResponseStateEnum.FAIL) {
-                  observer.error(response.payload);
-              } else {
-                  observer.next(response.payload);
-              }
-              observer.complete();
-              this.ngProgress.ref().complete();
-            });
-          });
-        } catch (e) {
+      try {
+        chrome.runtime.sendMessage(message, (response: IResponse) => {
           this.zone.run(() => {
-            observer.error(e);
+            if (!response || response.state == ResponseStateEnum.ERROR || response.state == ResponseStateEnum.FAIL) {
+              observer.error(response?.payload);
+            } else {
+              observer.next(response.payload);
+            }
+            observer.complete();
             this.ngProgress.ref().complete();
           });
-        }
-      });
+        });
+      } catch (e) {
+        this.zone.run(() => {
+          observer.error(e);
+          this.ngProgress.ref().complete();
+        });
+      }
+    });
   }
 }

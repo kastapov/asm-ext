@@ -4,7 +4,9 @@ import { Injectable } from '@angular/core';
 import { Config } from '../../types/config/Config';
 import { ConfigService } from '../service/config.service';
 
-@Injectable()
+@Injectable({
+  providedIn: "root"
+})
 export class ConfigResolver implements Resolve<Observable<Config>> {
 
   public constructor(private configService: ConfigService) { }

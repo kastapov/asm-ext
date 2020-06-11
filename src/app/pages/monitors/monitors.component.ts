@@ -24,7 +24,7 @@ export class MonitorsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscriptionMonitors.unsubscribe();
-    this.subscriptionStats.unsubscribe();
+    this.subscriptionMonitors?.unsubscribe();
+    this.subscriptionStats?.unsubscribe();
   }
 }

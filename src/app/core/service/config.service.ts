@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class ConfigService {
-  private _config;
+  private _config: Config;
 
   constructor(private backgroundService: BackgroundService, private router: Router) {
 
@@ -23,7 +23,7 @@ export class ConfigService {
     if (!this._config) {
       return this.backgroundService.loadConfig()
         .pipe(
-          tap(config => {
+          tap((config: Config) => {
             if (config) {
               this._config = config;
             } else {
@@ -34,10 +34,12 @@ export class ConfigService {
             this._config = new Config();
             return of(this._config);
           }),
-          finalize(() => this.router.navigate(this._config.defaultPage)),
+          finalize(() => {
+            this.router.navigate([this._config.defaultPage])
+          }),
         );
     }
-    return new Observable(this._config);
+    return of(this._config);
   }
 
   get config(): Config {
