@@ -9,7 +9,7 @@ export function setToken(token) {
   saveIntoStorage(TOKEN_NAME, token);
 }
 
-export function getTokenHeader(): Promise<AccessToken> {
+export function getToken(): Promise<string> {
   return loadFromStorage(TOKEN_NAME);
 }
 
@@ -22,17 +22,14 @@ export async function validateToken(): Promise<AccessToken> {
   if (!token) {
     return Promise.reject();
   } else {
-    return doTokenValidation(token).then(() => new AccessToken(token));
+    return doTokenValidation().then(() => new AccessToken(token));
   }
 }
 
-function doTokenValidation(token: string): AxiosPromise {
+function doTokenValidation(): AxiosPromise {
   return axios({
     url: `${API_BASE}/oauth2`,
     method: 'get',
-    headers: {
-      'Authorization': `Bearer ${token}`,
-    },
   });
 }
 
@@ -41,17 +38,14 @@ export async function invalidateToken(): Promise<any> {
   if (!token) {
     return Promise.resolve();
   } else {
-    return doInvalidateToken(token);
+    return doInvalidateToken();
   }
 }
 
-function doInvalidateToken(token: string): AxiosPromise {
+function doInvalidateToken(): AxiosPromise {
   return axios({
     url: `${API_BASE}/oauth2/token`,
     method: 'delete',
-    headers: {
-      'Authorization': `Bearer ${token}`,
-    },
   });
 }
 

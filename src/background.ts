@@ -1,15 +1,10 @@
 import { ActionEnum } from './app/types/messaging/ActionEnum';
 import { processLogin } from './background/login';
 import { BackgroundResponse } from './app/types/messaging/BacgroundResponse';
-import { invalidateToken, removeToken, validateToken } from './background/token';
-import axios, { AxiosResponse } from 'axios';
+import { invalidateToken, validateToken } from './background/token';
+import { initInterceptors } from './background/interceptor';
 
-axios.interceptors.response.use(c => c, (error) => {
-  if (error.response.status === 403) {
-    removeToken();
-  }
-  return Promise.reject(error);
-});
+initInterceptors();
 
 chrome.runtime.onMessage.addListener(handleMessage);
 
