@@ -10,6 +10,7 @@ import { LogEntryComponent } from './logs/log-entry/log-entry.component';
 import { MonitorEntryComponent } from './monitors/monitor-entry/monitor-entry.component';
 import { FiltersComponent } from './monitors/filters/filters.component';
 import { CoreModule } from '../core/core.module';
+import { ConfigComponent } from './config/config.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { CoreModule } from '../core/core.module';
     MonitorsComponent,
     LogEntryComponent,
     MonitorEntryComponent,
-    FiltersComponent
+    FiltersComponent,
+    ConfigComponent
   ],
 })
 export class PagesModule { }

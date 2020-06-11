@@ -26,8 +26,8 @@ export class StatService {
   }
 
   private loadStatistic(): Observable<Array<IStatistic>> {
-    const lastHour = DateUtil.getDateSubHoursISO(2);
-    const request = (new StatisticRequest(lastHour)).groupRequest.MONITOR();
+    const lastHour = DateUtil.getDateSubHoursISO(1);
+    const request = new StatisticRequest(lastHour, undefined).groupRequest.MONITOR();
     return this.http.get<Array<IStatistic>>(`${API_BASE}/statistic`, { params: request.toHttpParams() });
   }
 }

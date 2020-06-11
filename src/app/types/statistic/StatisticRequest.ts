@@ -1,4 +1,3 @@
-import { HttpParams } from '@angular/common/http';
 import { RequestParams } from '../RequestParams';
 
 export class StatisticRequest extends RequestParams {
@@ -6,10 +5,12 @@ export class StatisticRequest extends RequestParams {
   from: string;
   to: string;
   groupBy: string;
+  period: string;
 
-  constructor(from: string) {
+  constructor(from: string, period: string) {
     super();
     this.from = from;
+    this.period = period;
   }
 
   public get groupRequest() {
