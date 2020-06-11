@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { WidgetComponent } from './pages/widget/widget.component';
 import { LoginComponent } from './pages/login/login.component';
-import { AuthGuardService } from './core/auth/auth-guard.service';
+import { AuthGuardService } from './core/guard/auth-guard.service';
 import { LogsComponent } from './pages/logs/logs.component';
 import { MonitorsComponent } from './pages/monitors/monitors.component';
 import { MainLayoutComponent } from './shared/layout/main-layout/main-layout.component';

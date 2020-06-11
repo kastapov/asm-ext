@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BackgroundService } from '../background/background.service';
+import { BackgroundService } from './background.service';
 import { LoginCredentials } from '../../types/messaging/login/LoginCredentials';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';

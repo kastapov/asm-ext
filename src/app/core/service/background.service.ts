@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { MessagingService } from '../messaging/messaging.service';
+import { MessagingService } from './messaging.service';
 import { Payload } from '../../types/messaging/Payload';
 import { ActionEnum } from '../../types/messaging/ActionEnum';
 import { Message } from '../../types/messaging/Message';
