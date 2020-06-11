@@ -33,7 +33,6 @@ export class SpinnerComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-
   navigationInterceptor(event: RouterEvent): void {
     if (event instanceof NavigationStart) {
       this.loading = true
