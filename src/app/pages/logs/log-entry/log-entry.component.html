@@ -24,7 +24,7 @@
           <div><b>Connect:</b> {{ logEntry.metrics.ctime }}</div>
           <div><b>Processing:</b> {{ logEntry.metrics.ptime }}</div>
         </div>
-        <div><b>Total:</b> {{ logEntry.metrics.rtime + logEntry.metrics.ctime + logEntry.metrics.ptime }}</div>
+        <div><b>Total:</b> {{ logEntry.metrics.rtime + logEntry.metrics.ctime + logEntry.metrics.ptime }} ms</div>
         <button mat-stroked-button
                 (click)="openLog()" class="details_view-link">Detailed Log</button>
       </div>

@@ -17,7 +17,7 @@ export class LogoComponent implements OnInit {
 
   openAsm() {
     switch (this.router.url) {
-      case('/widget'): {
+      case('/stat'): {
         this.chromeService.openTab(`charts.php`);
         break;
       }

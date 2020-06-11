@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ILogEntry } from '../../types/ILogEntry';
 import { LogsService } from './logs.service';
 import { Subscription } from 'rxjs';
+import { ILog } from '../../types/log/ILog';
 
 @Component({
   selector: 'app-logs',
@@ -10,12 +10,12 @@ import { Subscription } from 'rxjs';
 })
 export class LogsComponent implements OnInit, OnDestroy {
   subscription: Subscription;
+  logs: Array<ILog>;
+
   constructor(private logsService: LogsService) { }
 
-  logs: Array<ILogEntry>;
-
   ngOnInit(): void {
-    this.subscription = this.logsService.getLogsObservable().subscribe(logs => this.logs = logs);
+    this.subscription = this.logsService.getObservable().subscribe(logs => this.logs = logs);
   }
 
   ngOnDestroy(): void {

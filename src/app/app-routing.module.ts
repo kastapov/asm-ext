@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { WidgetComponent } from './pages/widget/widget.component';
+import { StatComponent } from './pages/stat/stat.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthGuardService } from './core/guard/auth-guard.service';
 import { LogsComponent } from './pages/logs/logs.component';
@@ -14,11 +14,11 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
-    path: 'widget',
+    path: 'stat',
     component: MainLayoutComponent,
     canActivate: [AuthGuardService],
     children: [
-      {path: '', component: WidgetComponent}
+      {path: '', component: StatComponent}
     ]
   },
   {
@@ -37,7 +37,7 @@ const routes: Routes = [
       {path: '', component: MonitorsComponent}
     ]
   },
-  {path: '**', redirectTo: '/widget'}
+  {path: '**', redirectTo: '/stat'}
 ];
 
 @NgModule({

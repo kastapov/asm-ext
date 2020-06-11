@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ILogEntry } from '../../../types/ILogEntry';
-import { BASE_URL } from '../../../../background/config';
 import { ChromeService } from '../../../core/service/chrome.service';
+import { ILog } from '../../../types/log/ILog';
 
 @Component({
   selector: 'app-log-entry',
@@ -10,7 +9,7 @@ import { ChromeService } from '../../../core/service/chrome.service';
 })
 export class LogEntryComponent implements OnInit {
 
-  @Input() logEntry: ILogEntry;
+  @Input() logEntry: ILog;
 
   constructor(private chromeService: ChromeService) { }
 
