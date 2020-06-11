@@ -1,4 +1,5 @@
 import { RequestParams } from '../RequestParams';
+import { LogsLimitEnum } from '../config/LogsLimitEnum';
 
 export class LogsRequest extends RequestParams {
   monitor: Array<number>;
@@ -7,8 +8,8 @@ export class LogsRequest extends RequestParams {
   extended: boolean;
   limit: number;
 
-  constructor() {
+  constructor(logsLimit: LogsLimitEnum) {
     super();
-    this.limit = 50;
+    this.limit = logsLimit;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { StatService } from './stat.service';
 import { IStatistic } from '../../types/statistic/IStatistic';
@@ -8,7 +8,7 @@ import { IStatistic } from '../../types/statistic/IStatistic';
   templateUrl: './stat.component.html',
   styleUrls: ['./stat.component.scss']
 })
-export class StatComponent implements OnInit {
+export class StatComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   statistic: Array<IStatistic>;
 
@@ -19,6 +19,6 @@ export class StatComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subscription?.unsubscribe();
   }
 }

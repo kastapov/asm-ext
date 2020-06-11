@@ -3,9 +3,9 @@ export class DateUtil {
     return DateUtil.toISOString(new Date());
   }
 
-  public static getDateSubHoursISO(subHours: number): string {
+  public static getDateSubMinutesISO(subMinutes: number): string {
     const date = new Date();
-    date.setHours(date.getHours() - subHours);
+    date.setMinutes(date.getMinutes() - subMinutes);
     return DateUtil.toISOString(date);
   }
 

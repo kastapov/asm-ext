@@ -4,20 +4,19 @@ import { HttpClient } from '@angular/common/http';
 import { startWith, switchMap } from 'rxjs/operators';
 import { API_BASE } from '../../../background/config';
 import { IMonitor } from '../../types/monitor/IMonitor';
-import { MonitorEntry } from '../../types/monitor/MonitorEntry';
+import { ConfigService } from '../../core/service/config.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MonitorsService {
   private observable$: Observable<Array<IMonitor>>;
-  private _watchlist: [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private configService: ConfigService) { }
 
   public getObservable(): Observable<Array<IMonitor>> {
     if (!this.observable$) {
-      this.observable$ = interval(60000)
+      this.observable$ = interval(this.configService.config.poolingInterval)
         .pipe(
           startWith(0),
           switchMap(() => this.loadMonitors())
@@ -28,10 +27,5 @@ export class MonitorsService {
 
   private loadMonitors(): Observable<Array<IMonitor>> {
     return this.http.get<Array<IMonitor>>(`${API_BASE}/monitors`);
-  }
-
-
-  get watchlist(): [] {
-    return this._watchlist;
   }
 }

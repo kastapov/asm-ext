@@ -5,6 +5,7 @@ import { interval, Observable } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
 import { ILog } from '../../types/log/ILog';
 import { LogsRequest } from '../../types/log/LogsRequest';
+import { ConfigService } from '../../core/service/config.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +13,11 @@ import { LogsRequest } from '../../types/log/LogsRequest';
 export class LogsService {
   private observable$: Observable<Array<ILog>>;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private configService: ConfigService) { }
 
   public getObservable(): Observable<Array<ILog>> {
     if (!this.observable$) {
-      this.observable$ = interval(60000)
+      this.observable$ = interval(this.configService.config.poolingInterval)
         .pipe(
           startWith(0),
           switchMap(() => this.loadLogs())
@@ -26,7 +27,7 @@ export class LogsService {
   }
 
   private loadLogs(): Observable<Array<ILog>> {
-    const request = new LogsRequest();
+    const request = new LogsRequest(this.configService.config.logsLimit);
     return this.http.get<Array<ILog>>(`${API_BASE}/log?`, { params: request.toHttpParams() });
   }
 }
