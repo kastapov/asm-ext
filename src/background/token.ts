@@ -6,7 +6,7 @@ import { loadFromStorage, saveIntoStorage } from './storage';
 const TOKEN_NAME= 'token';
 
 export function setToken(token) {
-  saveIntoStorage(TOKEN_NAME, `Bearer ${token}`);
+  saveIntoStorage(TOKEN_NAME, token);
 }
 
 export function getTokenHeader(): Promise<AccessToken> {
@@ -18,39 +18,39 @@ export function removeToken() {
 }
 
 export async function validateToken(): Promise<AccessToken> {
-  const tokenHeader = await loadFromStorage(TOKEN_NAME);
-  if (!tokenHeader) {
+  const token = await loadFromStorage(TOKEN_NAME);
+  if (!token) {
     return Promise.reject();
   } else {
-    return doTokenValidation(tokenHeader).then(() => new AccessToken(tokenHeader));
+    return doTokenValidation(token).then(() => new AccessToken(token));
   }
 }
 
-function doTokenValidation(tokenHeader: string): AxiosPromise {
+function doTokenValidation(token: string): AxiosPromise {
   return axios({
     url: `${API_BASE}/oauth2`,
     method: 'get',
     headers: {
-      'Authorization': tokenHeader,
+      'Authorization': `Bearer ${token}`,
     },
   });
 }
 
 export async function invalidateToken(): Promise<any> {
-  const tokenHeader = await loadFromStorage(TOKEN_NAME);
-  if (!tokenHeader) {
+  const token = await loadFromStorage(TOKEN_NAME);
+  if (!token) {
     return Promise.resolve();
   } else {
-    return doInvalidateToken(tokenHeader);
+    return doInvalidateToken(token);
   }
 }
 
-function doInvalidateToken(tokenHeader: string): AxiosPromise {
+function doInvalidateToken(token: string): AxiosPromise {
   return axios({
     url: `${API_BASE}/oauth2/token`,
     method: 'delete',
     headers: {
-      'Authorization': tokenHeader,
+      'Authorization': `Bearer ${token}`,
     },
   });
 }

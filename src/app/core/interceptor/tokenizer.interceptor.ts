@@ -12,7 +12,7 @@ export class TokenizerInterceptor implements HttpInterceptor {
     const requestWithToken = request.clone({
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization': this.authService.authToken
+        'Authorization': `Bearer ${this.authService.authToken}`
       })
     });
 

@@ -25,8 +25,8 @@ export class AuthService {
 
   private authorise(accessToken: string) {
     this.isAuthorized = true;
-    this.accessToken = `Bearer ${accessToken}`;
-    this.router.navigate(['logs']);
+    this.accessToken = accessToken;
+    this.router.navigate(['monitors']);
   }
 
   public logout(): void {
