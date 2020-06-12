@@ -1,7 +1,7 @@
 import axios, { AxiosPromise } from 'axios';
-import { API_BASE } from './config';
 import { AccessToken } from '../app/types/messaging/login/AccessToken';
 import { loadFromStorage, saveIntoStorage } from './storage';
+import { API_BASE } from './common';
 
 const TOKEN_NAME= 'token';
 

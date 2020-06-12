@@ -1,4 +1,4 @@
-import {NgModule} from "@angular/core";
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
@@ -19,8 +19,7 @@ import { ConfigComponent } from './config/config.component';
     FormsModule,
     CoreModule
   ],
-  exports: [
-  ],
+  exports: [],
   declarations: [
     LoginComponent,
     StatComponent,
@@ -32,4 +31,5 @@ import { ConfigComponent } from './config/config.component';
     ConfigComponent
   ],
 })
-export class PagesModule { }
+export class PagesModule {
+}

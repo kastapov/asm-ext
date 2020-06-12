@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BASE_URL } from '../../../background/config';
+import { BASE_URL } from '../../../background/common';
 
 @Injectable({
   providedIn: 'root'

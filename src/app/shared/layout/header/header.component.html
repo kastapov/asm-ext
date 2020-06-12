@@ -1,7 +1,7 @@
 <div class="header">
   <app-logo></app-logo>
   <app-menu></app-menu>
-<!--  <div class="header__settings">a</div>-->
+  <a [routerLink]="'/config'" [routerLinkActive]="'header__settings--active'" class="header__settings"><mat-icon>settings</mat-icon></a>
   <a [routerLink]="" (click)="logout()" class="header__logout"><mat-icon>power_settings_new</mat-icon></a>
 </div>
 

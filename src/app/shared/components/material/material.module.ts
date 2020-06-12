@@ -10,6 +10,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSelectModule } from '@angular/material/select';
+import { MatListModule } from '@angular/material/list';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   imports: [
@@ -24,6 +27,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatIconModule,
     MatProgressSpinnerModule,
     MatExpansionModule,
+    MatSelectModule,
+    MatListModule,
+    MatRadioModule
   ],
   exports: [
     MatToolbarModule,
@@ -35,7 +41,10 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatMenuModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatSelectModule,
+    MatListModule,
+    MatRadioModule
   ],
 })
 export class MaterialModule { }

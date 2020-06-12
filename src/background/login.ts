@@ -1,8 +1,8 @@
 import { LoginCredentials } from '../app/types/messaging/login/LoginCredentials';
 import { AccessToken } from '../app/types/messaging/login/AccessToken';
 import axios, { AxiosPromise } from 'axios';
-import { API_BASE } from './config';
 import { setToken } from './token';
+import { API_BASE } from './common';
 
 export function processLogin(credentials: LoginCredentials): AxiosPromise<AccessToken> {
   return doAuth(credentials)

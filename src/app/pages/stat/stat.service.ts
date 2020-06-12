@@ -3,7 +3,6 @@ import { interval, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { startWith, switchMap } from 'rxjs/operators';
 import { DateUtil } from '../../util/date-util';
-import { API_BASE } from '../../../background/config';
 import { IStatistic } from '../../types/statistic/IStatistic';
 import { StatisticRequest } from '../../types/statistic/StatisticRequest';
 import { ConfigService } from '../../core/service/config.service';
@@ -11,6 +10,8 @@ import { PeriodEnum } from '../../types/config/PeriodEnum';
 import { Router } from '@angular/router';
 import { PageEnum } from '../../types/config/PageEnum';
 import { ChartTypeEnum } from '../../types/config/ChartTypeEnum';
+import { API_BASE } from '../../../background/common';
+import { ObservingPeriodsMapping } from '../../types/config/ObservingPeriodsMapping';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class StatService {
   }
 
   public getObservable(): Observable<Array<IStatistic>> {
-    return interval(this.configService.config.poolingInterval)
+    return interval(this.configService.config.pollingInterval)
       .pipe(
         startWith(0),
         switchMap(() => this.loadStatistic())
@@ -38,8 +39,10 @@ export class StatService {
     switch (chartType) {
       case ChartTypeEnum.HEATMAP:
       case ChartTypeEnum.LINE:
+      case ChartTypeEnum.BAR:
         return  this.createRequestForSeries();
       case ChartTypeEnum.PIE:
+      case ChartTypeEnum.GAUGE:
         return  this.createRequestForPoint();
     }
   }
@@ -53,13 +56,13 @@ export class StatService {
   }
 
   private createRequestForSeries(): StatisticRequest {
-    const period: PeriodEnum = this.configService.config.observingPeriod.period;
-    const dateFrom = DateUtil.getDateSubMinutesISO(this.configService.config.observingPeriod.duration);
+    const period: PeriodEnum = ObservingPeriodsMapping[this.configService.config.observingDuration];
+    const dateFrom = DateUtil.getDateSubMinutesISO(this.configService.config.observingDuration);
     return new StatisticRequest(dateFrom, period).groupRequest.MONITOR();
   }
 
   private createRequestForPoint(): StatisticRequest {
-    const dateFrom = DateUtil.getDateSubMinutesISO(this.configService.config.observingPeriod.duration);
+    const dateFrom = DateUtil.getDateSubMinutesISO(this.configService.config.observingDuration);
     return new StatisticRequest(dateFrom, undefined).groupRequest.MONITOR();
   }
 }

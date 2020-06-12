@@ -12,7 +12,6 @@ export class ConfigService {
   private _config: Config;
 
   constructor(private backgroundService: BackgroundService, private router: Router) {
-
   }
 
   saveConfig() {
@@ -21,25 +20,35 @@ export class ConfigService {
 
   loadConfig(): Observable<Config> {
     if (!this._config) {
-      return this.backgroundService.loadConfig()
-        .pipe(
-          tap((config: Config) => {
-            if (config) {
-              this._config = config;
-            } else {
-              this._config = new Config();
-            }
-          }),
-          catchError(() => {
-            this._config = new Config();
-            return of(this._config);
-          }),
-          finalize(() => {
-            this.router.navigate([this._config.defaultPage])
-          }),
-        );
+      return this.loadFromBackground();
     }
     return of(this._config);
+  }
+
+  private loadFromBackground() {
+    return this.backgroundService.loadConfig()
+      .pipe(
+        tap((config: Config) => {
+          if (config) {
+            this._config = config;
+          } else {
+            this._config = new Config();
+            this.saveConfig();
+          }
+        }),
+        catchError(() => {
+          this.createNewAndSave();
+          return of(this._config);
+        }),
+        finalize(() => {
+          this.router.navigate([this._config.defaultPage])
+        }),
+      );
+  }
+
+  private createNewAndSave() {
+    this._config = new Config();
+    this.saveConfig();
   }
 
   get config(): Config {

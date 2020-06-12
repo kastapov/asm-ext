@@ -1,4 +1,4 @@
-export enum DurationEnum {
+export enum ObservingDurationEnum {
   FIFTEEN_MINUTES = 15,
   THIRTY_MINUTES = 30,
   ONE_HOUR = 60,

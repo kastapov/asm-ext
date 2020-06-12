@@ -1,25 +1,24 @@
-import { PoolingIntervalEnum } from './PoolingIntervalEnum';
+import { PollingIntervalEnum } from './PollingIntervalEnum';
 import { PageEnum } from './PageEnum';
 import { ChartTypeEnum } from './ChartTypeEnum';
-import { ObservingPeriod } from './ObservingPeriod';
-import { ObservingPeriods } from './ObservingPeriods';
 import { LogsLimitEnum } from './LogsLimitEnum';
+import { ObservingDurationEnum } from './ObservingDurationEnum';
 
 export class Config {
-  poolingInterval: PoolingIntervalEnum;
+  pollingInterval: PollingIntervalEnum;
   defaultPage: PageEnum;
   statChartType: ChartTypeEnum;
   monitorChartType: ChartTypeEnum;
-  observingPeriod: ObservingPeriod;
+  observingDuration: ObservingDurationEnum;
   logsLimit: LogsLimitEnum;
   monitorsList: Array<string|number>;
 
   constructor() {
-    this.poolingInterval = PoolingIntervalEnum.MINUTE;
-    this.defaultPage = PageEnum.MONITORS;
+    this.pollingInterval = PollingIntervalEnum.MINUTE;
+    this.defaultPage = PageEnum.CONFIG;
     this.statChartType = ChartTypeEnum.HEATMAP;
     this.monitorChartType = ChartTypeEnum.PIE;
-    this.observingPeriod = ObservingPeriods.ONE_HOUR;
+    this.observingDuration = ObservingDurationEnum.ONE_HOUR;
     this.logsLimit = LogsLimitEnum.FIFTY;
     this.monitorsList = [];
   }

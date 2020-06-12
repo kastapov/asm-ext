@@ -1,0 +1,44 @@
+@import 'src/styles';
+
+.config {
+  padding: 0 5px;
+  color: mat-color(mat-palette($mat-gray, 800));
+
+  mat-card {
+    margin-bottom: 15px;
+  }
+
+  mat-card-title {
+    font-size: 16px;
+    margin-bottom: 3px;
+  }
+
+  .mat-card-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .config__section {
+    flex: 1 1;
+  }
+
+  .config__section--full {
+    flex: 1 1 100%;
+  }
+
+  .section__title {
+    margin-bottom: 5px;
+    color: mat-color(mat-palette($mat-gray, 500));
+  }
+
+  .config__section mat-radio-button {
+    display: block;
+    margin: 10px 0;
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+}

@@ -3,6 +3,7 @@ import { processLogin } from './background/login';
 import { BackgroundResponse } from './app/types/messaging/BacgroundResponse';
 import { invalidateToken, validateToken } from './background/token';
 import { initInterceptors } from './background/interceptor';
+import { loadConfig, saveConfig } from './background/config';
 
 initInterceptors();
 
@@ -34,6 +35,22 @@ function handleMessage(message, sender, sendResponse) {
         });
       return true;
     }
+    case (ActionEnum.SAVE_CONFIG): {
+      saveConfig(message.payload)
+        .then(sendWrappedResponse(sendResponse))
+        .catch((response) => {
+          sendResponse(BackgroundResponse.FAIL(response));
+        });
+      return true;
+    }
+    case (ActionEnum.LOAD_CONFIG): {
+      loadConfig()
+        .then(sendWrappedResponse(sendResponse))
+        .catch((response) => {
+          sendResponse(BackgroundResponse.FAIL(response));
+        });
+      return true;
+    }
   }
 }
 
@@ -42,7 +59,7 @@ function sendWrappedResponse(sendResponse) {
     if (response.data?.error) {
       sendResponse(BackgroundResponse.ERROR(response.data));
     } else {
-      sendResponse(BackgroundResponse.OK(response.data || response));
+      sendResponse(BackgroundResponse.OK(response?.data || response));
     }
   }
 }

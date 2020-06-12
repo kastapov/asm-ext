@@ -1,1 +1,110 @@
-<p>config works!</p>
+<div class="config">
+  <mat-card>
+    <mat-card-title>
+      Common
+    </mat-card-title>
+    <mat-card-content>
+      <div class="config__section">
+        <div class="section__title">
+          Default page
+        </div>
+        <div class="section__content">
+          <mat-radio-group [(ngModel)]="config.defaultPage" (ngModelChange)="saveConfig()">
+            <mat-radio-button *ngFor="let key of keys(PageEnum)" [value]="PageEnum[key]">
+              {{ key | replaceUnderscore | titlecase }}
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div class="config__section">
+        <div class="section__title">
+          Popup polling interval
+        </div>
+        <div class="section__content">
+          <mat-radio-group [(ngModel)]="config.pollingInterval" (ngModelChange)="saveConfig()">
+            <mat-radio-button *ngFor="let key of PoolingIntervalEnum | enumArray" [value]="PoolingIntervalEnum[key]">
+              {{ key | replaceUnderscore | titlecase }}
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div class="config__section config__section--full">
+        <div class="section__title">
+          Duration to observe
+        </div>
+        <div class="section__content">
+          <mat-form-field>
+            <mat-label>Observing Period</mat-label>
+            <mat-select [(ngModel)]="config.observingDuration" (ngModelChange)="saveConfig()">
+              <mat-option *ngFor="let key of ObservingDurationEnum | enumArray"
+                          [value]="ObservingDurationEnum[key]">
+                Last {{ key | replaceUnderscore | titlecase }}, data density - {{ ObservingPeriodsMapping[ObservingDurationEnum[key]] }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-title>
+      Statistic
+    </mat-card-title>
+    <mat-card-content>
+      <div class="config__section">
+        <div class="section__title">
+          Chart Type
+        </div>
+        <div class="section__content">
+          <mat-select  [(ngModel)]="config.statChartType" (ngModelChange)="saveConfig()">
+            <mat-option *ngFor="let key of keys(ChartTypeEnum)" [value]="ChartTypeEnum[key]">
+              {{ key | replaceUnderscore | titlecase }}
+            </mat-option>
+          </mat-select>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-title>
+      Logs
+    </mat-card-title>
+    <mat-card-content>
+      <div class="config__section">
+        <div class="section__title">
+          Logs limit
+        </div>
+        <div class="section__content">
+          <mat-form-field>
+            <mat-label>Logs limit</mat-label>
+            <mat-select [(ngModel)]="config.logsLimit" (ngModelChange)="saveConfig()">
+              <mat-option *ngFor="let key of LogsLimitEnum | enumArray"
+                          [value]="LogsLimitEnum[key]">
+                {{ LogsLimitEnum[key] }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-title>
+      Monitors
+    </mat-card-title>
+    <mat-card-content>
+      <div class="config__section">
+        <div class="section__title">
+          Chart type
+        </div>
+        <div class="section__content">
+          <mat-radio-group [(ngModel)]="config.monitorChartType" (ngModelChange)="saveConfig()">
+            <mat-radio-button *ngFor="let key of keys(ChartTypeEnum)" [value]="ChartTypeEnum[key]">
+              {{ key | replaceUnderscore | titlecase }}
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

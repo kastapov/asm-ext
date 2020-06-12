@@ -6,7 +6,7 @@
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
   box-shadow: 0 1px 3px 0 rgba(17,17,34,.2);
 
   app-menu {
@@ -23,20 +23,39 @@
 
 .header__settings {
   position: absolute;
+  top: 14px;
+  right: 42px;
+
+  .mat-icon {
+    color: mat-color(mat-palette($mat-gray, 500));
+    width: 20px;
+    height: 20px;
+  }
+
+  .material-icons {
+    font-size: 20px;
+  }
+}
+
+.header__settings--active {
+  .mat-icon {
+    color: mat-color($asm-ext-primary);
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2));
+  }
 }
 
 .header__logout {
   position: absolute;
   top: 14px;
-  right: 17px;
+  right: 14px;
 
   .mat-icon {
     color: mat-color($asm-ext-primary);
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
   }
 
   .material-icons {
-    font-size: 24px;
+    font-size: 20px;
   }
 }
