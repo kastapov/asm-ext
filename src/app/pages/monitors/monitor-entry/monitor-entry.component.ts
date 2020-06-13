@@ -1,9 +1,8 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Monitor } from '../../../types/monitor/Monitor';
-import { IStatistic } from '../../../types/statistic/IStatistic';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MonitorsService } from '../monitors.service';
 import { ConfigService } from '../../../core/service/config.service';
 import { MonitorEntry } from '../../../types/monitor/MonitorEntry';
+import { ChromeService } from '../../../core/service/chrome.service';
 
 @Component({
   selector: 'app-monitor-entry',
@@ -15,7 +14,10 @@ export class MonitorEntryComponent implements OnInit {
   @Input() monitorEntry: MonitorEntry;
   @Output() onEntryChanged: EventEmitter<any> = new EventEmitter();
 
-  constructor(private monitorsService: MonitorsService, private configService: ConfigService) { }
+  constructor(private monitorsService: MonitorsService,
+              private configService: ConfigService,
+              private chromeService: ChromeService) {
+  }
 
   ngOnInit(): void {
   }
@@ -44,5 +46,17 @@ export class MonitorEntryComponent implements OnInit {
 
   isTagSelected(tag: string): boolean {
     return this.configService.config.monitorsFilterConfig.selectedTag === tag;
+  }
+
+  openGraphs() {
+    this.chromeService.openTab(`charts.php?vrid=${this.monitorEntry.id}`);
+  }
+
+  openLogs() {
+    this.chromeService.openTab(`logviewer.php?rid=${this.monitorEntry.id}`);
+  }
+
+  editMonitor() {
+    this.chromeService.openTab(`settings/monitor/edit/${this.monitorEntry.id}`);
   }
 }

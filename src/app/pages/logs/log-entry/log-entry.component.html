@@ -6,7 +6,7 @@
         <mat-panel-description class="log-entry__time">
           {{ logEntry.start | date:'shortTime' }}
         </mat-panel-description>
-        <mat-panel-description class="log-entry__name" title="{{ logEntry.monitor.name }}">
+        <mat-panel-description class="log-entry__name" [matTooltip]="logEntry.monitor.name">
           <span>{{ logEntry.monitor.name }}</span>
         </mat-panel-description>
         <mat-panel-description class="log-entry__monitor-type">

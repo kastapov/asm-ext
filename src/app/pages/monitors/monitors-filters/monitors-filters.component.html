@@ -7,20 +7,20 @@
     </mat-button-toggle-group>
     <div class="monitors-filters__selected-folder">
       <button mat-icon-button color="primary" matTooltip="Unselect folder"
-              matTooltipPosition="left" (click)="resetFolder()" *ngIf="filtersConfig.selectedFolderId">
+              (click)="resetFolder()" *ngIf="filtersConfig.selectedFolderId">
         <mat-icon>folder_open</mat-icon>
       </button>
     </div>
     <div class="monitors-filters__selected-tag">
       <button mat-icon-button color="primary" matTooltip="Unselect tag"
-              matTooltipPosition="left" (click)="resetTag()" *ngIf="filtersConfig.selectedTag">
+              (click)="resetTag()" *ngIf="filtersConfig.selectedTag">
         <mat-icon>bookmark_border</mat-icon>
       </button>
     </div>
   </div>
   <div class="monitors-filters__right">
     <button mat-icon-button color="primary" matTooltip="Clear selection"
-            matTooltipPosition="left" (click)="clearSelection()" *ngIf="isClearSelectionActive()">
+            (click)="clearSelection()" *ngIf="isClearSelectionActive()">
       <mat-icon>select_all</mat-icon>
     </button>
   </div>

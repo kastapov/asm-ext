@@ -1,44 +1,82 @@
 <div
   [class]="{'monitor': true, 'monitor--active': monitorEntry.isActive, 'monitor--failing': monitorEntry.isFailing, 'monitor--selected': isSelected(monitorEntry.id)}">
-  <mat-accordion>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header [collapsedHeight]="'60px'" [expandedHeight]="'45px'">
-        <div class="monitor__header">
-          <div class="monitor__title">
-            {{monitorEntry.name}}
-          </div>
-          <div class="monitor__subtitle">
-            <div class="monitor__type">
-              {{ monitorEntry.type }}
-            </div>
-            <div class="monitor__folder" *ngIf="monitorEntry.folderId">
-              <button mat-icon-button [color]="isFolderSelected(monitorEntry.folderId) ? 'primary' : null"
-                      matTooltip="Click to filter by folder"
-                      matTooltipPosition="left" (click)="onFolderSelect(monitorEntry.folderId)">
-                <mat-icon>folder_open</mat-icon> {{ monitorEntry.folder.name }}
-              </button>
-            </div>
-          </div>
-          <div class="monitor__status"></div>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header [collapsedHeight]="'unset'" [expandedHeight]="'unset'">
+      <div class="monitor__header">
+        <div class="monitor__title">
+          <span>{{monitorEntry.name}}</span>
         </div>
-        <mat-checkbox (click)="$event.stopPropagation();" (change)="selectMonitor(monitorEntry.id)"
-                      [checked]="isSelected(monitorEntry.id)"></mat-checkbox>
-        <div class="monitor__chart"></div>
-        <div class="monitor__tags">
-          <mat-chip-list *ngFor="let tag of monitorEntry.tagNames">
-            <mat-chip selectable (click)="onTagSelect(tag)"
-                      matTooltip="Click to filter by tag"
-                      [selected]="isTagSelected(tag)">{{ tag }}</mat-chip>
-          </mat-chip-list>
+        <div class="monitor__subtitle">
+          <div class="monitor__type">
+            {{ monitorEntry.type }}
+          </div>
         </div>
-      </mat-expansion-panel-header>
-      <div class="monitor-entry__details">
-        <div class="details__full-buttons">
-          <div class="details__graphs"></div>
-          <div class="details__log"></div>
-          <div class="details__edit"></div>
+        <div
+          class="monitor__status">{{ monitorEntry.isFailing ? 'Error' : monitorEntry.isActive ? 'Ok' : 'Inactive' }}</div>
+      </div>
+      <div class="monitor__chart"></div>
+      <div class="monitor__bottom-ribbon">
+        <div class="ribbon-left">
+          <div class="monitor__folder" *ngIf="monitorEntry.folderId">
+            <button mat-icon-button [color]="isFolderSelected(monitorEntry.folderId) ? 'primary' : null"
+                    matTooltip="Click to filter by folder"
+                    (click)="$event.stopPropagation();onFolderSelect(monitorEntry.folderId)">
+              <mat-icon>folder_open</mat-icon>
+              {{ monitorEntry.folder.name }}
+            </button>
+          </div>
+          <div class="monitor__tags">
+            <mat-chip-list *ngFor="let tag of monitorEntry.tagNames">
+              <mat-chip selectable (click)="onTagSelect(tag)"
+                        matTooltip="Click to filter by tag"
+                        [selected]="isTagSelected(tag)">{{ tag }}</mat-chip>
+            </mat-chip-list>
+          </div>
+        </div>
+        <div class="ribbon-right">
+          <div class="details__graphs">
+            <button mat-icon-button color="primary"
+                    matTooltip="Open graphs"
+                    (click)="$event.stopPropagation();openGraphs()">
+              <mat-icon>bar_chart</mat-icon>
+            </button>
+          </div>
+          <div class="details__log">
+            <button mat-icon-button color="primary"
+                    matTooltip="Open logs"
+                    (click)="$event.stopPropagation();openLogs()">
+              <mat-icon>view_list</mat-icon>
+            </button>
+          </div>
+          <div class="details__edit">
+            <button mat-icon-button color="primary"
+                    matTooltip="Edit monitor"
+                    (click)="$event.stopPropagation();editMonitor()">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </div>
         </div>
       </div>
-    </mat-expansion-panel>
-  </mat-accordion>
+    </mat-expansion-panel-header>
+    <div class="monitor-entry__details">
+      <div>
+<!--        <mat-slide-toggle-->
+<!--          class="example-margin"-->
+<!--          color="primary"-->
+<!--          [checked]="monitorEntry.isActive"-->
+<!--          disabled="true">-->
+<!--          Active-->
+<!--        </mat-slide-toggle>-->
+      </div>
+      <div>
+        <div class="details__full-buttons">
+
+        </div>
+      </div>
+    </div>
+  </mat-expansion-panel>
+  <div class="monitor__checkbox">
+    <mat-checkbox (click)="$event.stopPropagation();" (change)="selectMonitor(monitorEntry.id)"
+                  [checked]="isSelected(monitorEntry.id)"></mat-checkbox>
+  </div>
 </div>

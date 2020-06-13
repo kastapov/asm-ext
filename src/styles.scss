@@ -64,3 +64,10 @@ mat-button-toggle-group {
 .mat-chip.mat-standard-chip.mat-chip-selected {
   border: 2px solid mat-color($asm-ext-primary);
 }
+
+mat-tooltip-component .mat-tooltip-handset {
+  margin: 4px;
+  font-size: 11px;
+  padding: 5px 8px;
+  line-height: 15px;
+}
