@@ -1,6 +1,7 @@
 <div class="monitors">
-  <app-monitors-filters></app-monitors-filters>
+  <app-monitors-filters (onFilteringChanged)="updateList()"></app-monitors-filters>
   <app-monitor-entry [monitorEntry]="monitorEntry"
-                     *ngFor="let monitorEntry of monitors">
+                     *ngFor="let monitorEntry of monitors | monitorsFiltering"
+                     (onEntryChanged)="updateList()">
   </app-monitor-entry>
 </div>

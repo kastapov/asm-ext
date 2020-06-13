@@ -1,4 +1,5 @@
-<div [class]="{'monitor': true, 'monitor--active': monitorEntry.isActive, 'monitor--failing': monitorEntry.isFailing, 'monitor--selected': isSelected(monitorEntry.id)}">
+<div
+  [class]="{'monitor': true, 'monitor--active': monitorEntry.isActive, 'monitor--failing': monitorEntry.isFailing, 'monitor--selected': isSelected(monitorEntry.id)}">
   <mat-accordion>
     <mat-expansion-panel>
       <mat-expansion-panel-header [collapsedHeight]="'60px'" [expandedHeight]="'45px'">
@@ -10,18 +11,26 @@
             <div class="monitor__type">
               {{ monitorEntry.type }}
             </div>
-            <div class="monitor__folder" *ngIf="monitorEntry.folderId">{{ monitorEntry.folderId }}</div>
+            <div class="monitor__folder" *ngIf="monitorEntry.folderId">
+              <button mat-icon-button [color]="isFolderSelected(monitorEntry.folderId) ? 'primary' : null"
+                      matTooltip="Click to filter by folder"
+                      matTooltipPosition="left" (click)="onFolderSelect(monitorEntry.folderId)">
+                <mat-icon>folder_open</mat-icon> {{ monitorEntry.folder.name }}
+              </button>
+            </div>
           </div>
           <div class="monitor__status"></div>
         </div>
-        <mat-checkbox (click)="$event.stopPropagation();" (change)="selectMonitor(monitorEntry.id)" [checked]="isSelected(monitorEntry.id)"></mat-checkbox>
+        <mat-checkbox (click)="$event.stopPropagation();" (change)="selectMonitor(monitorEntry.id)"
+                      [checked]="isSelected(monitorEntry.id)"></mat-checkbox>
         <div class="monitor__chart"></div>
         <div class="monitor__tags">
           <mat-chip-list *ngFor="let tag of monitorEntry.tagNames">
-            <mat-chip>{{ tag }}</mat-chip>
+            <mat-chip selectable (click)="onTagSelect(tag)"
+                      matTooltip="Click to filter by tag"
+                      [selected]="isTagSelected(tag)">{{ tag }}</mat-chip>
           </mat-chip-list>
         </div>
-
       </mat-expansion-panel-header>
       <div class="monitor-entry__details">
         <div class="details__full-buttons">

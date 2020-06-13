@@ -16,17 +16,14 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   imports: [
     CommonModule,
-    MatToolbarModule,
     MatButtonModule,
     MatCardModule,
     MatInputModule,
-    MatDialogModule,
-    MatTableModule,
-    MatMenuModule,
     MatIconModule,
     MatProgressSpinnerModule,
     MatExpansionModule,
@@ -35,16 +32,13 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatRadioModule,
     MatCheckboxModule,
     MatBadgeModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatTooltipModule,
   ],
   exports: [
-    MatToolbarModule,
     MatButtonModule,
     MatCardModule,
     MatInputModule,
-    MatDialogModule,
-    MatTableModule,
-    MatMenuModule,
     MatIconModule,
     MatProgressSpinnerModule,
     MatExpansionModule,
@@ -53,7 +47,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatRadioModule,
     MatCheckboxModule,
     MatBadgeModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatTooltipModule,
   ],
 })
 export class MaterialModule { }

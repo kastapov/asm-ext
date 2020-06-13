@@ -70,4 +70,8 @@ export class MonitorsComponent implements OnInit, OnDestroy {
       return monitorEntry;
     })
   }
+
+  updateList() {
+    this.monitors = [...this.monitors];
+  }
 }

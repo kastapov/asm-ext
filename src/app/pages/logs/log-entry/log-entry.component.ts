@@ -24,8 +24,6 @@ export class LogEntryComponent implements OnInit {
   }
 
   isToShowDate(): boolean {
-    console.log(DateUtil.ISOToDate(this.logEntry.start).getDate());
-    console.log(DateUtil.ISOToDate(this.previousDate).getDate());
     return DateUtil.ISOToDate(this.logEntry.start).getDate() !== DateUtil.ISOToDate(this.previousDate).getDate();
   }
 }

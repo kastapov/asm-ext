@@ -39,3 +39,24 @@ body {
 a {
   text-decoration: none;
 }
+
+mat-button-toggle-group {
+  margin: 5px;
+
+  .mat-button-toggle-appearance-standard {
+    .mat-button-toggle-label-content {
+      line-height: 28px;
+      padding: 0 8px;
+    }
+  }
+}
+
+.mat-chip.mat-standard-chip {
+  font-weight: normal;
+  //border: 1px solid mat-color($asm-ext-primary);
+  //background-color: #ffffff;
+  font-size: 12px;
+  padding: 5px 7px;
+  min-height: 26px;
+  cursor: pointer;
+}

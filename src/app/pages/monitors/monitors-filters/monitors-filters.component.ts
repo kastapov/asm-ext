@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ConfigService } from '../../../core/service/config.service';
 import { MonitorsFilterConfig } from '../../../types/config/MonitorsFilterConfig';
 
@@ -9,6 +9,7 @@ import { MonitorsFilterConfig } from '../../../types/config/MonitorsFilterConfig
 })
 export class MonitorsFiltersComponent implements OnInit {
   filtersConfig: MonitorsFilterConfig;
+  @Output() onFilteringChanged: EventEmitter<any> = new EventEmitter();
 
   constructor(private configService: ConfigService) { }
 
@@ -18,6 +19,30 @@ export class MonitorsFiltersComponent implements OnInit {
 
   invertConfigValue(parameterName: string) {
     this.filtersConfig[parameterName] = !this.filtersConfig[parameterName];
+    this.triggerChanges();
+  }
+
+  clearSelection() {
+    this.configService.config.monitorsList = [];
+    this.triggerChanges()
+  }
+
+  isClearSelectionActive() {
+    return this.configService.config.monitorsList.length > 0;
+  }
+
+  resetTag() {
+    this.filtersConfig.selectedTag = null;
+    this.triggerChanges();
+  }
+
+  resetFolder() {
+    this.filtersConfig.selectedFolderId = null;
+    this.triggerChanges();
+  }
+
+  private triggerChanges() {
     this.configService.saveConfig();
+    this.onFilteringChanged.emit();
   }
 }

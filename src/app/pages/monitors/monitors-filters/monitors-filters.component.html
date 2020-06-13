@@ -1,14 +1,27 @@
 <div class="monitors-filters">
   <div class="monitors-filters__left">
     <mat-button-toggle-group multiple>
-      <mat-button-toggle [checked]="filtersConfig?.active" (change)="invertConfigValue('active')">Active</mat-button-toggle>
-      <mat-button-toggle [checked]="filtersConfig?.selected" (change)="invertConfigValue('selected')">Selected</mat-button-toggle>
-      <mat-button-toggle [checked]="filtersConfig?.failing" (change)="invertConfigValue('failing')">Failing</mat-button-toggle>
+      <mat-button-toggle [checked]="filtersConfig.active" (change)="invertConfigValue('active')">Active</mat-button-toggle>
+      <mat-button-toggle [checked]="filtersConfig.selected" (change)="invertConfigValue('selected')">Selected</mat-button-toggle>
+      <mat-button-toggle [checked]="filtersConfig.failing" (change)="invertConfigValue('failing')">Failing</mat-button-toggle>
     </mat-button-toggle-group>
-    <div class="monitors-filters__selected-folder"></div>
-    <div class="monitors-filters__selected-tag"></div>
+    <div class="monitors-filters__selected-folder">
+      <button mat-icon-button color="primary" matTooltip="Unselect folder"
+              matTooltipPosition="left" (click)="resetFolder()" *ngIf="filtersConfig.selectedFolderId">
+        <mat-icon>folder_open</mat-icon>
+      </button>
+    </div>
+    <div class="monitors-filters__selected-tag">
+      <button mat-icon-button color="primary" matTooltip="Unselect tag"
+              matTooltipPosition="left" (click)="resetTag()" *ngIf="filtersConfig.selectedTag">
+        <mat-icon>bookmark_border</mat-icon>
+      </button>
+    </div>
   </div>
   <div class="monitors-filters__right">
-    unselect
+    <button mat-icon-button color="primary" matTooltip="Clear selection"
+            matTooltipPosition="left" (click)="clearSelection()" *ngIf="isClearSelectionActive()">
+      <mat-icon>select_all</mat-icon>
+    </button>
   </div>
 </div>

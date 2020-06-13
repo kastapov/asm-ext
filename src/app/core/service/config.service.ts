@@ -4,7 +4,6 @@ import { BackgroundService } from './background.service';
 import { catchError, finalize, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
-import { PageEnum } from '../../types/config/PageEnum';
 
 @Injectable({
   providedIn: 'root'
@@ -62,7 +61,7 @@ export class ConfigService {
 
   public toggleMonitorInList(id: number) {
     if (this._config.monitorsList.includes(id)) {
-      const index = this._config.monitorsList.indexOf(id);
+      const index: number = this._config.monitorsList.indexOf(id);
       if (index > -1) {
         this._config.monitorsList.splice(index, 1);
       }
@@ -72,7 +71,25 @@ export class ConfigService {
     this.saveConfig();
   }
 
-  isMonitorSelected(id: number) {
+  toggleTagSelection(tag: string): void {
+    if (this._config.monitorsFilterConfig.selectedTag === tag) {
+      this._config.monitorsFilterConfig.selectedTag = null;
+    } else {
+      this._config.monitorsFilterConfig.selectedTag = tag;
+    }
+    this.saveConfig();
+  }
+
+  toggleFolderSelection(folderId: number): void {
+    if (this._config.monitorsFilterConfig.selectedFolderId === folderId) {
+      this._config.monitorsFilterConfig.selectedFolderId = null;
+    } else {
+      this._config.monitorsFilterConfig.selectedFolderId = folderId;
+    }
+    this.saveConfig();
+  }
+
+  isMonitorSelected(id: number): boolean {
     return this._config.monitorsList.includes(id);
   }
 }
