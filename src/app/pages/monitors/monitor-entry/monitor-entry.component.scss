@@ -55,3 +55,8 @@
 .monitor--selected {
   color: red;
 }
+
+.monitor__folder button:not(.mat-primary) {
+  font-weight: normal;
+  color: mat-color(mat-palette($mat-gray, 600));
+}

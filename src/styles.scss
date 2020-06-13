@@ -53,10 +53,14 @@ mat-button-toggle-group {
 
 .mat-chip.mat-standard-chip {
   font-weight: normal;
-  //border: 1px solid mat-color($asm-ext-primary);
-  //background-color: #ffffff;
+  border: 2px solid mat-color(mat-palette($mat-gray, 400));
+  background-color: #ffffff;
   font-size: 12px;
-  padding: 5px 7px;
+  padding: 4px 6px;
   min-height: 26px;
   cursor: pointer;
+}
+
+.mat-chip.mat-standard-chip.mat-chip-selected {
+  border: 2px solid mat-color($asm-ext-primary);
 }
