@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core';
 import { ConfigService } from '../../core/service/config.service';
 import { Config } from '../../types/config/Config';
 import { PollingIntervalEnum } from '../../types/config/PollingIntervalEnum';
@@ -22,6 +22,7 @@ export class ConfigComponent implements OnInit {
   LogsLimitEnum = LogsLimitEnum;
   ObservingPeriodsMapping = ObservingPeriodsMapping;
   ObservingDurationEnum = ObservingDurationEnum;
+  resetClicked = false;
 
   constructor(private configService: ConfigService) { }
 
@@ -31,5 +32,15 @@ export class ConfigComponent implements OnInit {
 
   saveConfig() {
     this.configService.saveConfig();
+  }
+
+  resetConfig() {
+    if (this.resetClicked) {
+      this.configService.resetConfig();
+      this.config = this.configService.config;
+      this.resetClicked = false;
+    } else {
+      this.resetClicked = true;
+    }
   }
 }

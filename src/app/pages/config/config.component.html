@@ -38,7 +38,8 @@
             <mat-select [(ngModel)]="config.observingDuration" (ngModelChange)="saveConfig()">
               <mat-option *ngFor="let key of ObservingDurationEnum | enumArray"
                           [value]="ObservingDurationEnum[key]">
-                Last {{ key | replaceUnderscore | titlecase }}, data density - {{ ObservingPeriodsMapping[ObservingDurationEnum[key]] }}
+                Last {{ key | replaceUnderscore | titlecase }}, data density
+                - {{ ObservingPeriodsMapping[ObservingDurationEnum[key]] }}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -56,7 +57,7 @@
           Chart Type
         </div>
         <div class="section__content">
-          <mat-select  [(ngModel)]="config.statChartType" (ngModelChange)="saveConfig()">
+          <mat-select [(ngModel)]="config.statChartType" (ngModelChange)="saveConfig()">
             <mat-option *ngFor="let key of keys(ChartTypeEnum)" [value]="ChartTypeEnum[key]">
               {{ key | replaceUnderscore | titlecase }}
             </mat-option>
@@ -105,6 +106,12 @@
           </mat-radio-group>
         </div>
       </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-content>
+      <button (click)="resetConfig()" mat-stroked-button color="warn">Reset settings to defaults</button>
+      <div class="config__reset-message" *ngIf="resetClicked">Click second time to confirm configuration reset.</div>
     </mat-card-content>
   </mat-card>
 </div>

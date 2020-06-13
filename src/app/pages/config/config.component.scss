@@ -41,4 +41,10 @@
   mat-form-field {
     width: 100%;
   }
+
+  .config__reset-message {
+    color: mat-color(mat-palette($mat-red, 700));
+    font-size: 12px;
+    margin-top: 5px;
+  }
 }

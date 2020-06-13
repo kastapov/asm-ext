@@ -4,6 +4,7 @@ import { BackgroundService } from './background.service';
 import { catchError, finalize, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
+import { PageEnum } from '../../types/config/PageEnum';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,10 @@ export class ConfigService {
 
   saveConfig() {
     this.backgroundService.saveConfig(this._config).subscribe();
+  }
+
+  resetConfig() {
+    this.createNewAndSave();
   }
 
   loadConfig(): Observable<Config> {
