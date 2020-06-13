@@ -9,6 +9,6 @@
   </a>
   <a [routerLink]="['/monitors']" [routerLinkActive]="'menu__button--active'"
      class="menu__button menu__button-monitors">
-    <mat-icon>assignment_turned_in</mat-icon>
+    <mat-icon [matBadge]="getSelectedMonitors()" matBadgeSize="small" matBadgeColor="warn">assignment_turned_in</mat-icon>
   </a>
 </div>

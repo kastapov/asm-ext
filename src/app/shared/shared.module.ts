@@ -9,11 +9,11 @@ import { RouterModule } from '@angular/router';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    MaterialModule,
-    RouterModule,
-  ],
+    imports: [
+        CommonModule,
+        MaterialModule,
+        RouterModule,
+    ],
   exports: [
     MaterialModule,
     LogoComponent,

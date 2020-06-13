@@ -35,34 +35,32 @@ export class StatService {
   }
 
   createRequest(): StatisticRequest {
-    const chartType: ChartTypeEnum = this.getChartType();
+    const chartType: ChartTypeEnum = this.isStatForMonitors() ?
+      this.configService.config.monitorChartType : this.configService.config.statChartType;
+    const monitors: Array<number|string> = this.isStatForMonitors() ? undefined : this.configService.config.monitorsList;
     switch (chartType) {
       case ChartTypeEnum.HEATMAP:
       case ChartTypeEnum.LINE:
       case ChartTypeEnum.BAR:
-        return  this.createRequestForSeries();
+        return  this.createRequestForSeries(monitors);
       case ChartTypeEnum.PIE:
       case ChartTypeEnum.GAUGE:
-        return  this.createRequestForPoint();
+        return  this.createRequestForPoint(monitors);
     }
   }
 
-  private getChartType(): ChartTypeEnum {
-    if (this.router.url === `/${PageEnum.MONITORS}`) {
-      return this.configService.config.monitorChartType
-    } else {
-      return this.configService.config.statChartType
-    }
+  private isStatForMonitors(): boolean {
+    return this.router.url === `/${PageEnum.MONITORS}`;
   }
 
-  private createRequestForSeries(): StatisticRequest {
+  private createRequestForSeries(monitors: Array<number|string>): StatisticRequest {
     const period: PeriodEnum = ObservingPeriodsMapping[this.configService.config.observingDuration];
     const dateFrom = DateUtil.getDateSubMinutesISO(this.configService.config.observingDuration);
-    return new StatisticRequest(dateFrom, period).groupRequest.MONITOR();
+    return new StatisticRequest(dateFrom, period, monitors).groupRequest.MONITOR();
   }
 
-  private createRequestForPoint(): StatisticRequest {
+  private createRequestForPoint(monitors: Array<number|string>): StatisticRequest {
     const dateFrom = DateUtil.getDateSubMinutesISO(this.configService.config.observingDuration);
-    return new StatisticRequest(dateFrom, undefined).groupRequest.MONITOR();
+    return new StatisticRequest(dateFrom, undefined, monitors).groupRequest.MONITOR();
   }
 }

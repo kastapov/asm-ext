@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IMonitor } from '../../types/monitor/IMonitor';
 import { MonitorsService } from './monitors.service';
@@ -13,8 +13,8 @@ import { IStatistic } from '../../types/statistic/IStatistic';
 export class MonitorsComponent implements OnInit, OnDestroy {
   subscriptionMonitors: Subscription;
   subscriptionStats: Subscription;
-  monitors: Array<IMonitor>;
-  statistic: Array<IStatistic>;
+  monitors: Array<IMonitor> = [];
+  statistic: Array<IStatistic> = [];
 
   constructor(private monitorsService: MonitorsService, private statService: StatService) { }
 
@@ -26,5 +26,9 @@ export class MonitorsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscriptionMonitors?.unsubscribe();
     this.subscriptionStats?.unsubscribe();
+  }
+
+  getStatForMonitor(monitorId: number) {
+    return this.statistic.filter((s: IStatistic) => s.monitors.some(m => m.id === monitorId));
   }
 }

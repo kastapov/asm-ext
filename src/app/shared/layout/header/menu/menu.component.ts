@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfigService } from '../../../../core/service/config.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private configService: ConfigService) { }
 
   ngOnInit(): void {
   }
 
+  getSelectedMonitors(): String {
+    return String(this.configService.config.monitorsList.length || '');
+  }
 }

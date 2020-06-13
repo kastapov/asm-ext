@@ -12,4 +12,8 @@ export class DateUtil {
   public static toISOString(date: Date): string {
     return `${date.toISOString().slice(0, -5)}+00:00`;
   }
+
+  public static ISOToDate(date: string): Date {
+    return new Date(Date.parse(date));
+  }
 }

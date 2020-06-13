@@ -1,33 +1,37 @@
-<div [className]="'monitor-entry'">
+<div [class]="{'monitor': true, 'monitor--active': statistic.slice(-1)?.pop()?.metrics.uptime > 0, 'monitor--failing': statistic.slice(-1).pop()?.metrics.uptime == 0, 'monitor--inactive': statistic.slice(-1).pop()?.metrics?.uptime == undefined, 'monitor--selected': isSelected(monitorEntry.id)}">
   <mat-accordion>
     <mat-expansion-panel>
-<!--      <mat-expansion-panel-header [collapsedHeight]="'45px'" [expandedHeight]="'34px'">-->
-<!--        <mat-panel-description class="log-entry__time">-->
-<!--          {{ logEntry.start | date:'shortTime' }}-->
-<!--        </mat-panel-description>-->
-<!--        <mat-panel-description class="log-entry__name">-->
-<!--          {{ logEntry.monitor.name}}-->
-<!--        </mat-panel-description>-->
-<!--        <mat-panel-description class="log-entry__monitor-type">-->
-<!--          {{ logEntry.monitor_type }}-->
-<!--        </mat-panel-description>-->
-<!--        <mat-panel-description class="log-entry__result-code">-->
-<!--          ({{ logEntry.result.code }})-->
-<!--        </mat-panel-description>-->
-<!--      </mat-expansion-panel-header>-->
-<!--      <div class="log-entry__details">-->
-<!--        <div><b>Description:</b> {{ logEntry.result.description }}</div>-->
-<!--        <div><b>Location:</b> {{ logEntry.location.name }}</div>-->
-<!--        <div><b>Date:</b> {{ logEntry.start | date:'long' }}</div>-->
-<!--        <div class="details__time-rov">-->
-<!--          <div><b>Resolve:</b> {{ logEntry.metrics.rtime }}</div>-->
-<!--          <div><b>Connect:</b> {{ logEntry.metrics.ctime }}</div>-->
-<!--          <div><b>Processing:</b> {{ logEntry.metrics.ptime }}</div>-->
-<!--        </div>-->
-<!--        <div><b>Total:</b> {{ logEntry.metrics.rtime + logEntry.metrics.ctime + logEntry.metrics.ptime }} ms</div>-->
-<!--        <button mat-stroked-button-->
-<!--                (click)="openLog()" class="details_view-link">Detailed Log</button>-->
-<!--      </div>-->
+      <mat-expansion-panel-header [collapsedHeight]="'60px'" [expandedHeight]="'45px'">
+        <div class="monitor__header">
+          <div class="monitor__title">
+            {{monitorEntry.name}}
+          </div>
+          <div class="monitor__subtitle">
+            <div class="monitor__type">
+              {{ monitorEntry.type }}
+            </div>
+            <div class="monitor__folder" *ngIf="monitorEntry.folderId">{{ monitorEntry.folderId }}</div>
+          </div>
+          <div class="monitor__status"
+               [ngClass]="{'monitor__status': true, 'monitor__status--active': statistic.slice(-1)?.pop()?.metrics.uptime > 0, 'monitor__status--failing': statistic.slice(-1).pop()?.metrics.uptime < uptimeThreshold, 'monitor__status--inactive': statistic.slice(-1).pop()?.metrics?.uptime == undefined}">
+          </div>
+        </div>
+        <mat-checkbox (click)="$event.stopPropagation();" (change)="selectMonitor(monitorEntry.id)" [checked]="isSelected(monitorEntry.id)"></mat-checkbox>
+        <div class="monitor__chart"></div>
+        <div class="monitor__tags">
+          <mat-chip-list *ngFor="let tag of monitorEntry.tagNames">
+            <mat-chip>{{ tag }}</mat-chip>
+          </mat-chip-list>
+        </div>
+
+      </mat-expansion-panel-header>
+      <div class="monitor-entry__details">
+        <div class="details__full-buttons">
+          <div class="details__graphs"></div>
+          <div class="details__log"></div>
+          <div class="details__edit"></div>
+        </div>
+      </div>
     </mat-expansion-panel>
   </mat-accordion>
 </div>

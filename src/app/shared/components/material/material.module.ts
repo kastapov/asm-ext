@@ -11,8 +11,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSelectModule } from '@angular/material/select';
-import { MatListModule } from '@angular/material/list';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
   imports: [
@@ -28,8 +30,10 @@ import { MatRadioModule } from '@angular/material/radio';
     MatProgressSpinnerModule,
     MatExpansionModule,
     MatSelectModule,
-    MatListModule,
-    MatRadioModule
+    MatChipsModule,
+    MatRadioModule,
+    MatCheckboxModule,
+    MatBadgeModule
   ],
   exports: [
     MatToolbarModule,
@@ -43,8 +47,10 @@ import { MatRadioModule } from '@angular/material/radio';
     MatProgressSpinnerModule,
     MatExpansionModule,
     MatSelectModule,
-    MatListModule,
-    MatRadioModule
+    MatChipsModule,
+    MatRadioModule,
+    MatCheckboxModule,
+    MatBadgeModule
   ],
 })
 export class MaterialModule { }

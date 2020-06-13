@@ -8,7 +8,7 @@ import { LogsComponent } from './logs/logs.component';
 import { MonitorsComponent } from './monitors/monitors.component';
 import { LogEntryComponent } from './logs/log-entry/log-entry.component';
 import { MonitorEntryComponent } from './monitors/monitor-entry/monitor-entry.component';
-import { FiltersComponent } from './monitors/filters/filters.component';
+import { MonitorsFiltersComponent } from './monitors/monitors-filters/monitors-filters.component';
 import { CoreModule } from '../core/core.module';
 import { ConfigComponent } from './config/config.component';
 
@@ -17,7 +17,7 @@ import { ConfigComponent } from './config/config.component';
     CommonModule,
     SharedModule,
     FormsModule,
-    CoreModule
+    CoreModule,
   ],
   exports: [],
   declarations: [
@@ -27,7 +27,7 @@ import { ConfigComponent } from './config/config.component';
     MonitorsComponent,
     LogEntryComponent,
     MonitorEntryComponent,
-    FiltersComponent,
+    MonitorsFiltersComponent,
     ConfigComponent
   ],
 })

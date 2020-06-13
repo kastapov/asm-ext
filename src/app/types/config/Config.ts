@@ -3,6 +3,7 @@ import { PageEnum } from './PageEnum';
 import { ChartTypeEnum } from './ChartTypeEnum';
 import { LogsLimitEnum } from './LogsLimitEnum';
 import { ObservingDurationEnum } from './ObservingDurationEnum';
+import { MonitorsFilterConfig } from './MonitorsFilterConfig';
 
 export class Config {
   pollingInterval: PollingIntervalEnum;
@@ -12,6 +13,7 @@ export class Config {
   observingDuration: ObservingDurationEnum;
   logsLimit: LogsLimitEnum;
   monitorsList: Array<string|number>;
+  monitorsFilterConfig: MonitorsFilterConfig;
 
   constructor() {
     this.pollingInterval = PollingIntervalEnum.MINUTE;

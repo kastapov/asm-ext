@@ -54,4 +54,16 @@ export class ConfigService {
   get config(): Config {
     return this._config;
   }
+
+  public toggleMonitorInList(id: number) {
+    if (this._config.monitorsList.includes(id)) {
+      const index = this._config.monitorsList.indexOf(id);
+      if (index > -1) {
+        this._config.monitorsList.splice(index, 1);
+      }
+    } else {
+      this._config.monitorsList.push(id);
+    }
+    this.saveConfig();
+  }
 }

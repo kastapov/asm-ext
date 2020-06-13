@@ -27,7 +27,9 @@ export class LogsService {
   }
 
   private loadLogs(): Observable<Array<ILog>> {
-    const request = new LogsRequest(this.configService.config.logsLimit);
+    const logsLimit: number = this.configService.config.logsLimit;
+    const monitors: Array<string|number> = this.configService.config.monitorsList;
+    const request = new LogsRequest(logsLimit, monitors);
     return this.http.get<Array<ILog>>(`${API_BASE}/log?`, { params: request.toHttpParams() });
   }
 }
