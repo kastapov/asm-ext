@@ -15,6 +15,14 @@
   padding: 0 16px;
 }
 
+.mat-expansion-panel-header-description {
+  margin-right: 6px;
+}
+
+.mat-expansion-panel-header-description:last-child {
+  margin-right: 2px;
+}
+
 .mat-accordion .mat-expansion-panel.mat-expansion-panel-spacing.mat-expanded {
   margin-bottom: 10px;
 }
@@ -25,14 +33,19 @@
 
 .log-entry__name {
   flex: 1 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  min-width: 15px;
+
+  span {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
 }
 
 .log-entry__monitor-type {
   flex: 0 0 50px;
   color: rgba(0, 0, 0, 0.54);
+  justify-content: center;
 }
 
 .log-entry__result-code {
@@ -53,7 +66,7 @@
 }
 
 .log-entry--unconfirmed_error .mat-expansion-panel::after {
-  background-color: mat-color(mat-palette($mat-gray, 500));
+  background-color: #333333;
 }
 
 .log-entry--confirmed_error .mat-expansion-panel::after {
@@ -65,7 +78,7 @@
 }
 
 .log-entry--unscheduled .mat-expansion-panel::after {
-  background-color: #333333;
+  background-color: mat-color(mat-palette($mat-gray, 500));
 }
 
 .mat-accordion .mat-expansion-panel:last-of-type {
@@ -97,4 +110,10 @@
   padding: 0 10px;
   line-height: 24px;
   float: right;
+}
+
+.logs-entry__date-badge {
+  padding: 6px 0 4px 0;
+  text-align: center;
+  color: mat-color(mat-palette($mat-gray, 700));
 }
