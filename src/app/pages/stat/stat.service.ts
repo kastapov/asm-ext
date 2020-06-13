@@ -21,12 +21,16 @@ export class StatService {
   constructor(private http: HttpClient, private configService: ConfigService, private router: Router) {
   }
 
-  public getObservable(): Observable<Array<IStatistic>> {
+  public getObservableInterval(): Observable<Array<IStatistic>> {
     return interval(this.configService.config.pollingInterval)
       .pipe(
         startWith(0),
         switchMap(() => this.loadStatistic())
       );
+  }
+
+  public getObservable() {
+    return this.loadStatistic();
   }
 
   private loadStatistic(): Observable<Array<IStatistic>> {

@@ -1,7 +1,6 @@
 <div class="monitors">
   <app-monitors-filters></app-monitors-filters>
   <app-monitor-entry [monitorEntry]="monitorEntry"
-                     [statistic]="getStatForMonitor(monitorEntry.id)"
                      *ngFor="let monitorEntry of monitors">
   </app-monitor-entry>
 </div>

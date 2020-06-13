@@ -1,9 +1,14 @@
 <div class="monitors-filters">
-
+  <div class="monitors-filters__left">
+    <mat-button-toggle-group multiple>
+      <mat-button-toggle [checked]="filtersConfig?.active" (change)="invertConfigValue('active')">Active</mat-button-toggle>
+      <mat-button-toggle [checked]="filtersConfig?.selected" (change)="invertConfigValue('selected')">Selected</mat-button-toggle>
+      <mat-button-toggle [checked]="filtersConfig?.failing" (change)="invertConfigValue('failing')">Failing</mat-button-toggle>
+    </mat-button-toggle-group>
+    <div class="monitors-filters__selected-folder"></div>
+    <div class="monitors-filters__selected-tag"></div>
+  </div>
+  <div class="monitors-filters__right">
+    unselect
+  </div>
 </div>
-
-active
-selected
-failing
-
-unselect

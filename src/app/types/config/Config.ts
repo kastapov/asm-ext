@@ -16,12 +16,13 @@ export class Config {
   monitorsFilterConfig: MonitorsFilterConfig;
 
   constructor() {
-    this.pollingInterval = PollingIntervalEnum.MINUTE;
-    this.defaultPage = PageEnum.CONFIG;
+    this.pollingInterval = PollingIntervalEnum.NEVER_POLL;
+    this.defaultPage = PageEnum.STAT;
     this.statChartType = ChartTypeEnum.HEATMAP;
     this.monitorChartType = ChartTypeEnum.PIE;
     this.observingDuration = ObservingDurationEnum.ONE_HOUR;
     this.logsLimit = LogsLimitEnum.FIFTY;
     this.monitorsList = [];
+    this.monitorsFilterConfig = new MonitorsFilterConfig();
   }
 }

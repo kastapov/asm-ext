@@ -71,4 +71,8 @@ export class ConfigService {
     }
     this.saveConfig();
   }
+
+  isMonitorSelected(id: number) {
+    return this._config.monitorsList.includes(id);
+  }
 }

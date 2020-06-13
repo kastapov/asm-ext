@@ -1,4 +1,4 @@
-<div [class]="{'monitor': true, 'monitor--active': statistic.slice(-1)?.pop()?.metrics.uptime > 0, 'monitor--failing': statistic.slice(-1).pop()?.metrics.uptime == 0, 'monitor--inactive': statistic.slice(-1).pop()?.metrics?.uptime == undefined, 'monitor--selected': isSelected(monitorEntry.id)}">
+<div [class]="{'monitor': true, 'monitor--active': monitorEntry.isActive, 'monitor--failing': monitorEntry.isFailing, 'monitor--selected': isSelected(monitorEntry.id)}">
   <mat-accordion>
     <mat-expansion-panel>
       <mat-expansion-panel-header [collapsedHeight]="'60px'" [expandedHeight]="'45px'">
@@ -12,9 +12,7 @@
             </div>
             <div class="monitor__folder" *ngIf="monitorEntry.folderId">{{ monitorEntry.folderId }}</div>
           </div>
-          <div class="monitor__status"
-               [ngClass]="{'monitor__status': true, 'monitor__status--active': statistic.slice(-1)?.pop()?.metrics.uptime > 0, 'monitor__status--failing': statistic.slice(-1).pop()?.metrics.uptime < uptimeThreshold, 'monitor__status--inactive': statistic.slice(-1).pop()?.metrics?.uptime == undefined}">
-          </div>
+          <div class="monitor__status"></div>
         </div>
         <mat-checkbox (click)="$event.stopPropagation();" (change)="selectMonitor(monitorEntry.id)" [checked]="isSelected(monitorEntry.id)"></mat-checkbox>
         <div class="monitor__chart"></div>

@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { IMonitor } from '../../../types/monitor/IMonitor';
+import { Monitor } from '../../../types/monitor/Monitor';
 import { IStatistic } from '../../../types/statistic/IStatistic';
 import { MonitorsService } from '../monitors.service';
 import { ConfigService } from '../../../core/service/config.service';
+import { MonitorEntry } from '../../../types/monitor/MonitorEntry';
 
 @Component({
   selector: 'app-monitor-entry',
@@ -12,9 +13,7 @@ import { ConfigService } from '../../../core/service/config.service';
 })
 export class MonitorEntryComponent implements OnInit {
 
-  @Input() monitorEntry: IMonitor;
-  @Input() statistic: Array<IStatistic>;
-  uptimeThreshold: number = 50;
+  @Input() monitorEntry: MonitorEntry;
 
   constructor(private monitorsService: MonitorsService, private configService: ConfigService) { }
 
@@ -26,6 +25,6 @@ export class MonitorEntryComponent implements OnInit {
   }
 
   isSelected(id: number) {
-    return this.configService.config.monitorsList.includes(id);
+    return this.configService.isMonitorSelected(id);
   }
 }

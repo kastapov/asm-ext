@@ -15,7 +15,7 @@ export class StatComponent implements OnInit, OnDestroy {
   constructor(private statService: StatService) { }
 
   ngOnInit(): void {
-    this.subscription = this.statService.getObservable().subscribe(statistic => this.statistic = statistic);
+    this.subscription = this.statService.getObservableInterval().subscribe(statistic => this.statistic = statistic);
   }
 
   ngOnDestroy(): void {

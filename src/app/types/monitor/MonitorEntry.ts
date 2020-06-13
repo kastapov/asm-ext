@@ -1,12 +1,10 @@
 import { IStatistic } from '../statistic/IStatistic';
+import { Monitor } from './Monitor';
+import { IMonitorFolder } from './IMonitorFolder';
 
-export class MonitorEntry {
-  id: number;
-  type: string;
-  name: string;
-  folderName: string;
-  tagNames: Array<string>;
-  checkInterval: string;
+export class MonitorEntry extends Monitor {
   isActive: boolean;
+  isFailing: boolean;
+  folder: IMonitorFolder;
   stat: Array<IStatistic>;
 }

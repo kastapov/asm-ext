@@ -15,6 +15,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatChipsModule,
     MatRadioModule,
     MatCheckboxModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatButtonToggleModule
   ],
   exports: [
     MatToolbarModule,
@@ -50,7 +52,8 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatChipsModule,
     MatRadioModule,
     MatCheckboxModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatButtonToggleModule
   ],
 })
 export class MaterialModule { }
