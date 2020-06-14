@@ -21,7 +21,7 @@ export class LogoComponent implements OnInit {
         this.chromeService.openTab(`charts.php`);
         break;
       }
-      case('/groupedLogs'): {
+      case('/logs'): {
         this.chromeService.openTab(`logviewer.php`);
         break;
       }
