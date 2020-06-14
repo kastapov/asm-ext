@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { StatComponent } from './stat/stat.component';
@@ -30,6 +30,7 @@ import { ConfigComponent } from './config/config.component';
     MonitorsFiltersComponent,
     ConfigComponent
   ],
+  providers: [DatePipe],
 })
 export class PagesModule {
 }

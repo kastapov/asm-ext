@@ -1,3 +1,8 @@
 <div class="logs">
-  <app-log-entry [logEntry]="logEntry" [previousDate]="logs[i-1]?.start" *ngFor="let logEntry of logs; let i = index"></app-log-entry>
+  <div class="logs__group" *ngFor="let logsGroup of groupedLogs | keyvalue">
+    <div class="logs__date-badge">
+      {{ logsGroup.key }}
+    </div>
+    <app-log-entry [logEntry]="logEntry" *ngFor="let logEntry of logsGroup.value"></app-log-entry>
+  </div>
 </div>

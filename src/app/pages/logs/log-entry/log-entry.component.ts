@@ -12,7 +12,6 @@ import { DateUtil } from '../../../util/date-util';
 export class LogEntryComponent implements OnInit {
 
   @Input() logEntry: ILog;
-  @Input() previousDate: string;
 
   constructor(private chromeService: ChromeService) { }
 
@@ -21,9 +20,5 @@ export class LogEntryComponent implements OnInit {
 
   openLog(): void {
     this.chromeService.openTab(`reports/check/detail/${this.logEntry.monitor.id}/${this.logEntry.id}`);
-  }
-
-  isToShowDate(): boolean {
-    return DateUtil.ISOToDate(this.logEntry.start).getDate() !== DateUtil.ISOToDate(this.previousDate).getDate();
   }
 }

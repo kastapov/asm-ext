@@ -1,5 +1,4 @@
 <div [className]="'log-entry log-entry--' + logEntry.result.type">
-  <div class="logs-entry__date-badge" *ngIf="isToShowDate()">{{ logEntry.start | date:'longDate' }}</div>
   <mat-accordion>
     <mat-expansion-panel>
       <mat-expansion-panel-header [collapsedHeight]="'45px'" [expandedHeight]="'34px'">

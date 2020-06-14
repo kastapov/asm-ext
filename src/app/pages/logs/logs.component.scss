@@ -1,1 +1,13 @@
+@import 'src/styles';
 
+.logs__date-badge {
+  position: sticky;
+  top: -1px;
+  z-index: 1;
+  background: white;
+  padding: 6px 0 4px 0;
+  text-align: center;
+  color: mat-color(mat-palette($mat-gray, 700));
+  box-shadow: 0 3px 3px -2px #ffffff;
+  margin-bottom: 3px;
+}
