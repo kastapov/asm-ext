@@ -4,11 +4,12 @@ import { ChartTypeEnum } from './ChartTypeEnum';
 import { LogsLimitEnum } from './LogsLimitEnum';
 import { ObservingDurationEnum } from './ObservingDurationEnum';
 import { MonitorsFilterConfig } from './MonitorsFilterConfig';
+import { StatConfig } from './StatConfig';
 
 export class Config {
   pollingInterval: PollingIntervalEnum;
   defaultPage: PageEnum;
-  statChartType: ChartTypeEnum;
+  statConfig: StatConfig;
   monitorChartType: ChartTypeEnum;
   observingDuration: ObservingDurationEnum;
   logsLimit: LogsLimitEnum;
@@ -18,8 +19,8 @@ export class Config {
   constructor() {
     this.pollingInterval = PollingIntervalEnum.NEVER_POLL;
     this.defaultPage = PageEnum.STAT;
-    this.statChartType = ChartTypeEnum.HEATMAP;
-    this.monitorChartType = ChartTypeEnum.PIE;
+    this.statConfig = new StatConfig();
+    this.monitorChartType = ChartTypeEnum.HEATMAP;
     this.observingDuration = ObservingDurationEnum.ONE_HOUR;
     this.logsLimit = LogsLimitEnum.FIFTY;
     this.monitorsList = [];

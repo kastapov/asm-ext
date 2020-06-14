@@ -1,7 +1,6 @@
 export enum ChartTypeEnum {
-  LINE = 'line',
-  BAR = 'bar',
   HEATMAP = 'heatmap',
-  PIE = 'pie',
   GAUGE = 'gauge',
+  STACKED_BAR = 'stacked_bar',
+  ACTIVITY_GAUGE = 'activity_gauge',
 }

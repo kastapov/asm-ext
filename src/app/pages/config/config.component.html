@@ -49,25 +49,6 @@
   </mat-card>
   <mat-card>
     <mat-card-title>
-      Statistic
-    </mat-card-title>
-    <mat-card-content>
-      <div class="config__section">
-        <div class="section__title">
-          Chart Type
-        </div>
-        <div class="section__content">
-          <mat-select [(ngModel)]="config.statChartType" (ngModelChange)="saveConfig()">
-            <mat-option *ngFor="let key of keys(ChartTypeEnum)" [value]="ChartTypeEnum[key]">
-              {{ key | replaceUnderscore | titlecase }}
-            </mat-option>
-          </mat-select>
-        </div>
-      </div>
-    </mat-card-content>
-  </mat-card>
-  <mat-card>
-    <mat-card-title>
       Logs
     </mat-card-title>
     <mat-card-content>

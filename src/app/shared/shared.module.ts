@@ -7,6 +7,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { MenuComponent } from './layout/header/menu/menu.component';
 import { RouterModule } from '@angular/router';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
+import { GraphComponent } from './components/graph/graph.component';
 
 @NgModule({
     imports: [
@@ -20,6 +21,6 @@ import { MainLayoutComponent } from './layout/main-layout/main-layout.component'
     HeaderComponent,
     SpinnerComponent,
   ],
-  declarations: [LogoComponent, SpinnerComponent, HeaderComponent, MenuComponent, MainLayoutComponent],
+  declarations: [LogoComponent, SpinnerComponent, HeaderComponent, MenuComponent, MainLayoutComponent, GraphComponent],
 })
 export class SharedModule { }

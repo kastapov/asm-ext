@@ -1,0 +1,20 @@
+<div class="stat-settings">
+  <div class="stat-settings__left">
+    <mat-button-toggle-group [(ngModel)]="statConfig.metric" (ngModelChange)="triggerChanges()">
+      <mat-button-toggle [value]="MetricEnum.UP_STATUS">Up Status</mat-button-toggle>
+      <mat-button-toggle [value]="MetricEnum.PERFORMANCE">Performance</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+  <div class="stat-settings__right">
+    <mat-button-toggle-group [(ngModel)]="statConfig.upStatusChartType" (ngModelChange)="triggerChanges()"
+                             *ngIf="statConfig.metric === MetricEnum.UP_STATUS">
+      <mat-button-toggle [value]="ChartTypeEnum.HEATMAP">Heatmap</mat-button-toggle>
+      <mat-button-toggle [value]="ChartTypeEnum.GAUGE">Gauge</mat-button-toggle>
+    </mat-button-toggle-group>
+    <mat-button-toggle-group [(ngModel)]="statConfig.performanceChartType" (ngModelChange)="triggerChanges()"
+                             *ngIf="statConfig.metric === MetricEnum.PERFORMANCE">
+      <mat-button-toggle [value]="ChartTypeEnum.STACKED_BAR">Bar</mat-button-toggle>
+      <mat-button-toggle [value]="ChartTypeEnum.ACTIVITY_GAUGE">Gauge</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+</div>

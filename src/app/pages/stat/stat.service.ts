@@ -12,6 +12,7 @@ import { PageEnum } from '../../types/config/PageEnum';
 import { ChartTypeEnum } from '../../types/config/ChartTypeEnum';
 import { API_BASE } from '../../../background/common';
 import { ObservingPeriodsMapping } from '../../types/config/ObservingPeriodsMapping';
+import { MetricEnum } from '../../types/config/MetricEnum';
 
 @Injectable({
   providedIn: 'root'
@@ -39,17 +40,27 @@ export class StatService {
   }
 
   createRequest(): StatisticRequest {
-    const chartType: ChartTypeEnum = this.isStatForMonitors() ?
-      this.configService.config.monitorChartType : this.configService.config.statChartType;
+    const chartType: ChartTypeEnum = this.getChartType();
     const monitors: Array<number|string> = this.isStatForMonitors() ? undefined : this.configService.config.monitorsList;
     switch (chartType) {
       case ChartTypeEnum.HEATMAP:
-      case ChartTypeEnum.LINE:
-      case ChartTypeEnum.BAR:
+      case ChartTypeEnum.STACKED_BAR:
         return  this.createRequestForSeries(monitors);
-      case ChartTypeEnum.PIE:
+      case ChartTypeEnum.ACTIVITY_GAUGE:
       case ChartTypeEnum.GAUGE:
         return  this.createRequestForPoint(monitors);
+    }
+  }
+
+  private getChartType() {
+    if (this.isStatForMonitors()) {
+      return this.configService.config.monitorChartType;
+    } else {
+      if (this.configService.config.statConfig.metric === MetricEnum.PERFORMANCE) {
+        return this.configService.config.statConfig.performanceChartType;
+      } else {
+        return this.configService.config.statConfig.upStatusChartType;
+      }
     }
   }
 

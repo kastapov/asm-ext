@@ -11,6 +11,7 @@ import { MonitorEntryComponent } from './monitors/monitor-entry/monitor-entry.co
 import { MonitorsFiltersComponent } from './monitors/monitors-filters/monitors-filters.component';
 import { CoreModule } from '../core/core.module';
 import { ConfigComponent } from './config/config.component';
+import { StatSettingsComponent } from './stat/stat-settings/stat-settings.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { ConfigComponent } from './config/config.component';
     LogEntryComponent,
     MonitorEntryComponent,
     MonitorsFiltersComponent,
-    ConfigComponent
+    ConfigComponent,
+    StatSettingsComponent
   ],
   providers: [DatePipe],
 })
