@@ -7,7 +7,7 @@ export class MonitorsFilterConfig {
 
   constructor() {
     this.active = false;
-    this.selected = true;
+    this.selected = false;
     this.failing = false;
     this.selectedFolderId = null;
     this.selectedTag = null;
