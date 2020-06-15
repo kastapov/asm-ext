@@ -13,6 +13,7 @@ export class MonitorEntryComponent implements OnInit {
 
   @Input() monitorEntry: MonitorEntry;
   @Output() onEntryChanged: EventEmitter<any> = new EventEmitter();
+  opened: boolean = false;
 
   constructor(private monitorsService: MonitorsService,
               private configService: ConfigService,
@@ -58,5 +59,13 @@ export class MonitorEntryComponent implements OnInit {
 
   editMonitor() {
     this.chromeService.openTab(`settings/monitor/edit/${this.monitorEntry.id}`);
+  }
+
+  get chartType() {
+    return this.configService.config.monitorChartType;
+  }
+
+  onOpen() {
+    this.opened = true;
   }
 }

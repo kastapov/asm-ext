@@ -7,7 +7,7 @@ export class StatConfig {
   performanceChartType: ChartTypeEnum;
 
   constructor() {
-    this.metric = MetricEnum.UP_STATUS;
+    this.metric = MetricEnum.UPTIME;
     this.upStatusChartType = ChartTypeEnum.HEATMAP;
     this.performanceChartType = ChartTypeEnum.STACKED_BAR;
   }

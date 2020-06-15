@@ -76,6 +76,6 @@ export class StatService {
 
   private createRequestForPoint(monitors: Array<number|string>): StatisticRequest {
     const dateFrom = DateUtil.getDateSubMinutesISO(this.configService.config.observingDuration);
-    return new StatisticRequest(dateFrom, undefined, monitors).groupRequest.MONITOR();
+    return new StatisticRequest(dateFrom, undefined, monitors);
   }
 }

@@ -2,6 +2,7 @@ import { loadFromStorage, saveIntoStorage } from './storage';
 import { Config } from '../app/types/config/Config';
 
 const CONFIG_NAME = 'config';
+// saveIntoStorage(CONFIG_NAME, null); //TODO: for dev purposes
 
 export function saveConfig(config: Config) {
   saveIntoStorage(CONFIG_NAME, config);

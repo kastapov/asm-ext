@@ -1,6 +1,6 @@
 <div
   [class]="{'monitor': true, 'monitor--active': monitorEntry.isActive, 'monitor--failing': monitorEntry.isFailing, 'monitor--selected': isSelected(monitorEntry.id)}">
-  <mat-expansion-panel>
+  <mat-expansion-panel (opened)="onOpen()">
     <mat-expansion-panel-header [collapsedHeight]="'unset'" [expandedHeight]="'unset'">
       <div class="monitor__header">
         <div class="monitor__title">
@@ -58,21 +58,8 @@
         </div>
       </div>
     </mat-expansion-panel-header>
-    <div class="monitor-entry__details">
-      <div>
-<!--        <mat-slide-toggle-->
-<!--          class="example-margin"-->
-<!--          color="primary"-->
-<!--          [checked]="monitorEntry.isActive"-->
-<!--          disabled="true">-->
-<!--          Active-->
-<!--        </mat-slide-toggle>-->
-      </div>
-      <div>
-        <div class="details__full-buttons">
-
-        </div>
-      </div>
+    <div class="monitor-entry__chart" *ngIf="opened && monitorEntry.stat?.length > 0">
+        <app-simple-chart [chartType]="chartType" [stats]="monitorEntry.stat"></app-simple-chart>
     </div>
   </mat-expansion-panel>
   <div class="monitor__checkbox">

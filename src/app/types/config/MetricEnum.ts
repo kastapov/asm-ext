@@ -1,4 +1,4 @@
 export enum MetricEnum {
-  UP_STATUS = 'up_status',
+  UPTIME = 'uptime',
   PERFORMANCE = 'performance',
 }

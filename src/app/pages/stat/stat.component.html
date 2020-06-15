@@ -1,1 +1,2 @@
-<app-stat-settings></app-stat-settings>
+<app-stat-settings (onConfigChanged)="onConfigChanged()"></app-stat-settings>
+<app-fullsize-chart [stats]="statistic" [chartType]="chartType"></app-fullsize-chart>
