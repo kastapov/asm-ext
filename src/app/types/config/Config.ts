@@ -15,6 +15,7 @@ export class Config {
   logsLimit: LogsLimitEnum;
   monitorsList: Array<string|number>;
   monitorsFilterConfig: MonitorsFilterConfig;
+  runBackgroundProcess: boolean;
 
   constructor() {
     this.pollingInterval = PollingIntervalEnum.NEVER_POLL;
@@ -25,5 +26,6 @@ export class Config {
     this.logsLimit = LogsLimitEnum.FIFTY;
     this.monitorsList = [];
     this.monitorsFilterConfig = new MonitorsFilterConfig();
+    this.runBackgroundProcess = true;
   }
 }
