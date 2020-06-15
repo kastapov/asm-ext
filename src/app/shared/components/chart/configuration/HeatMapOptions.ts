@@ -11,11 +11,11 @@ export const HeatMapOptions: Partial<ChartOptions> = {
         ranges: [
           {
             from: 0,
-            to: 1,
+            to: 0,
             color: "#F44336"
           },
           {
-            from: 2,
+            from: 1,
             to: 69,
             color: "#FF6F00"
           },

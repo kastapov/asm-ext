@@ -37,36 +37,34 @@ export class ChartComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.stats?.currentValue) {
+      const options = _.merge(this.generateOptions(), this.inputOptions);
       const seriesTransformer: ITransformer = this.getTransformerForSeries();
-      this.chartOptions.series = seriesTransformer.transformData(changes.stats.currentValue);
-    }
-    if (changes.chartType?.currentValue) {
-      const options = _.merge(this.generateOptions(changes.chartType.currentValue), this.inputOptions);
-      this.chartOptions.chart = options.chart;
+      options.series = seriesTransformer.transformData(changes.stats.currentValue);
+      this.chartOptions = options;
     }
   }
 
   private generateOptions(chartType = this.chartType) {
     let options: Array<Partial<ChartOptions>> = []
-    switch (this.chartType) {
+    switch (chartType) {
       case ChartTypeEnum.HEATMAP:
-        options = [SeriesChartOptions, HeatMapOptions];
+        options = [{...SeriesChartOptions}, {...HeatMapOptions}];
         break
       case ChartTypeEnum.STACKED_BAR:
-        options = [SeriesChartOptions, HeatMapOptions];
+        options = [{...SeriesChartOptions}, {...HeatMapOptions}];
         break
       case ChartTypeEnum.GAUGE:
-        options = [GaugeOptions];
+        options = [{...GaugeOptions}];
         break
       case ChartTypeEnum.ACTIVITY_GAUGE:
-        options = [SeriesChartOptions, HeatMapOptions];
+        options = [{...SeriesChartOptions}, {...HeatMapOptions}];
         break
     }
-    return _.merge(GeneralOptions, ...options, this.inputOptions);
+    return _.merge({...GeneralOptions}, ...options, {...this.inputOptions});
   }
 
-  private getTransformerForSeries(): ITransformer {
-    switch (this.chartType) {
+  private getTransformerForSeries(chartType = this.chartType): ITransformer {
+    switch (chartType) {
       case ChartTypeEnum.HEATMAP:
         return new HeatMapSeriesDataTransformer();
       case ChartTypeEnum.GAUGE:
