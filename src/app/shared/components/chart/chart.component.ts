@@ -33,38 +33,39 @@ export class ChartComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    const options = _.merge(this.generateOptions(), this.inputOptions);
-    const seriesTransformer: ITransformer = this.getTransformerForSeries();
-    options.series = seriesTransformer.transformData(this.stats);
-    this.chartOptions = options;
+    this.init();
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.stats?.currentValue) {
-      const options = _.merge(this.generateOptions(), this.inputOptions);
-      const seriesTransformer: ITransformer = this.getTransformerForSeries();
-      options.series = seriesTransformer.transformData(changes.stats.currentValue);
-      this.chartOptions = options;
+      this.init(changes.stats.currentValue);
     }
+  }
+
+  private init(stats = this.stats) {
+    const options = this.generateOptions();
+    const seriesTransformer: ITransformer = this.getTransformerForSeries();
+    options.series = seriesTransformer.transformData(stats);
+    this.chartOptions = options;
   }
 
   private generateOptions(chartType = this.chartType) {
     let options: Array<Partial<ChartOptions>> = []
     switch (chartType) {
       case ChartTypeEnum.HEATMAP:
-        options = [{...SeriesChartOptions}, {...HeatMapOptions}];
+        options = [SeriesChartOptions, HeatMapOptions];
         break
       case ChartTypeEnum.STACKED_BAR:
-        options = [{...SeriesChartOptions}, {...AreaOptions}];
+        options = [SeriesChartOptions, AreaOptions];
         break
       case ChartTypeEnum.GAUGE:
-        options = [{...GaugeOptions}];
+        options = [GaugeOptions];
         break
       case ChartTypeEnum.ACTIVITY_GAUGE:
-        options = [{...SeriesChartOptions}, {...ActivityGaugeOptions}];
+        options = [SeriesChartOptions, ActivityGaugeOptions];
         break
     }
-    return _.merge({...GeneralOptions}, ...options, {...this.inputOptions});
+    return _.merge({}, GeneralOptions, ...options, this.inputOptions);
   }
 
   private getTransformerForSeries(chartType = this.chartType): ITransformer {

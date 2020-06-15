@@ -38,6 +38,17 @@ export class SimpleChartComponent implements OnInit {
           show: false,
         }
       },
+      tooltip: {
+        followCursor: true,
+        x: {
+          show: false
+        },
+        y: {
+          title: {
+            formatter: () => '',
+          },
+        }
+      }
     }
   }
 }
