@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { ChartComponent as ApexChartComponent } from 'ng-apexcharts';
 import * as _ from 'lodash';
 import { ChartOptions } from '../../../types/chart/ChartOptions';
@@ -23,8 +23,7 @@ export class ChartComponent implements OnInit, OnChanges {
   @Input() chartType: ChartTypeEnum
   @Input() stats: Array<IStatistic>
   @Input() inputOptions: Partial<ChartOptions>;
-  public chartOptions: Partial<ChartOptions>;
-  private init: boolean = false;
+  public chartOptions: Partial<ChartOptions> = {};
 
   constructor() {
   }
@@ -34,19 +33,20 @@ export class ChartComponent implements OnInit, OnChanges {
     const seriesTransformer: ITransformer = this.getTransformerForSeries();
     options.series = seriesTransformer.transformData(this.stats);
     this.chartOptions = options;
-    this.init = true;
   }
 
-  ngOnChanges() {
-    if (this.init) {
-      const options = _.merge(this.generateOptions(), this.inputOptions);
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.stats?.currentValue) {
       const seriesTransformer: ITransformer = this.getTransformerForSeries();
-      this.chartOptions.series = seriesTransformer.transformData(this.stats);
+      this.chartOptions.series = seriesTransformer.transformData(changes.stats.currentValue);
+    }
+    if (changes.chartType?.currentValue) {
+      const options = _.merge(this.generateOptions(changes.chartType.currentValue), this.inputOptions);
       this.chartOptions.chart = options.chart;
     }
   }
 
-  private generateOptions() {
+  private generateOptions(chartType = this.chartType) {
     let options: Array<Partial<ChartOptions>> = []
     switch (this.chartType) {
       case ChartTypeEnum.HEATMAP:
