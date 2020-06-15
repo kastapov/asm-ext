@@ -4,6 +4,7 @@ import { IMessage } from '../../types/messaging/IMessage';
 import { IResponse } from '../../types/messaging/IResponse';
 import { ResponseStateEnum } from '../../types/messaging/ResponseStateEnum';
 import { NgProgress } from 'ngx-progressbar';
+import { Message } from '../../types/messaging/Message';
 
 
 @Injectable({
@@ -36,5 +37,9 @@ export class MessagingService {
         });
       }
     });
+  }
+
+  fireAndForget(message: Message) {
+    chrome.runtime.sendMessage(message);
   }
 }

@@ -9,6 +9,7 @@ import { LoginMessage } from '../../types/messaging/login/LoginMessage';
 import { LoginCredentials } from '../../types/messaging/login/LoginCredentials';
 import { ConfigMessage } from '../../types/messaging/config/ConfigMessage';
 import { Config } from '../../types/config/Config';
+import { BackgroundStatPayload } from '../../types/messaging/stat/BackgroundStatPayload';
 
 @Injectable({
   providedIn: 'root'
@@ -35,5 +36,9 @@ export class BackgroundService {
 
   loadConfig(): Observable<Config> {
     return this.messaging.send(new Message(ActionEnum.LOAD_CONFIG));
+  }
+
+  updateStatMock(backgroundStat: BackgroundStatPayload): void {
+    this.messaging.fireAndForget(new Message(ActionEnum.UPDATE_STAT_MOCK, backgroundStat));
   }
 }

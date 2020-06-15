@@ -3,5 +3,6 @@ export enum ActionEnum {
   LOGOUT,
   CHECK_LOGIN,
   SAVE_CONFIG,
-  LOAD_CONFIG
+  LOAD_CONFIG,
+  UPDATE_STAT_MOCK
 }

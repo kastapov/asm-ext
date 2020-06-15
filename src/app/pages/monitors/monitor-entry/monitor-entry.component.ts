@@ -25,6 +25,7 @@ export class MonitorEntryComponent implements OnInit {
 
   selectMonitor(id: number) {
     this.configService.toggleMonitorInList(id);
+    this.onEntryChanged.emit();
   }
 
   isSelected(id: number) {

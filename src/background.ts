@@ -4,6 +4,8 @@ import { BackgroundResponse } from './app/types/messaging/BacgroundResponse';
 import { invalidateToken, validateToken } from './background/token';
 import { initInterceptors } from './background/interceptor';
 import { loadConfig, saveConfig } from './background/config';
+import { BackgroundStatPayload } from './app/types/messaging/stat/BackgroundStatPayload';
+import { BackgroundStatusEnum } from './app/types/messaging/stat/BackgroundStatusEnum';
 
 initInterceptors();
 
@@ -51,6 +53,14 @@ function handleMessage(message, sender, sendResponse) {
         });
       return true;
     }
+    case (ActionEnum.UPDATE_STAT_MOCK): {
+      updateStatBadge(message.payload)
+        .then(sendWrappedResponse(sendResponse))
+        .catch((response) => {
+          sendResponse(BackgroundResponse.FAIL(response));
+        });
+      return true;
+    }
   }
 }
 
@@ -62,4 +72,18 @@ function sendWrappedResponse(sendResponse) {
       sendResponse(BackgroundResponse.OK(response?.data || response));
     }
   }
+}
+
+function updateStatBadge(payload: BackgroundStatPayload) {
+  if (payload.number > 0) {
+    if (payload.status === BackgroundStatusEnum.OK) {
+      chrome.browserAction.setBadgeBackgroundColor({color: '#4caf50'});
+    } else {
+      chrome.browserAction.setBadgeBackgroundColor({color: '#f44336'});
+    }
+    chrome.browserAction.setBadgeText({text: String(payload.number)});
+  } else {
+    chrome.browserAction.setBadgeText({text: ''});
+  }
+  return Promise.resolve();
 }

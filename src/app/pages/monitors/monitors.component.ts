@@ -8,6 +8,8 @@ import { ConfigService } from '../../core/service/config.service';
 import { Config } from '../../types/config/Config';
 import { MonitorEntry } from '../../types/monitor/MonitorEntry';
 import { IMonitorFolder } from '../../types/monitor/IMonitorFolder';
+import { BackgroundService } from '../../core/service/background.service';
+import { BackgroundStatPayload } from '../../types/messaging/stat/BackgroundStatPayload';
 
 @Component({
   selector: 'app-monitors',
@@ -22,7 +24,8 @@ export class MonitorsComponent implements OnInit, OnDestroy {
 
   constructor(private monitorsService: MonitorsService,
               private statService: StatService,
-              private configService: ConfigService) {
+              private configService: ConfigService,
+              private backgroundService: BackgroundService) {
   }
 
   ngOnInit(): void {
@@ -44,12 +47,12 @@ export class MonitorsComponent implements OnInit, OnDestroy {
   }
 
   isMonitorFailing(statistic: Array<IStatistic>): boolean {
-    //TODO: here should be more complex metric calculation;
+    //TODO: here should be more complex metric calculation since we do not have a flag in API;
     return statistic.slice(-1)?.pop()?.metrics.uptime < this.uptimeThreshold;
   }
 
   isMonitorActive(statistic: Array<IStatistic>): boolean {
-    //TODO: here should be more complex metric calculation;
+    //TODO: here should be more complex metric calculation since we do not have a flag in API;
     return statistic.slice(-1)?.pop()?.metrics.uptime > 0;
   }
 
@@ -73,5 +76,18 @@ export class MonitorsComponent implements OnInit, OnDestroy {
 
   updateList() {
     this.monitors = [...this.monitors];
+    this.sendMockedStats();
+  }
+
+  //TODO: This is only for demo purpose
+  private sendMockedStats() {
+    const selectedMonitorsList = this.configService.config.monitorsList;
+    const failingNumber = this.monitors.filter(e => e.isFailing && selectedMonitorsList.includes(e.id)).length;
+    if (failingNumber) {
+      this.backgroundService.updateStatMock(BackgroundStatPayload.FAIL(failingNumber));
+    } else {
+      const activeNumber = this.monitors.filter(e => e.isActive && selectedMonitorsList.includes(e.id)).length;
+      this.backgroundService.updateStatMock(BackgroundStatPayload.OK(activeNumber));
+    }
   }
 }
