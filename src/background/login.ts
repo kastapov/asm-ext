@@ -38,7 +38,7 @@ function obtainAccessToken({data: authResponse}): AxiosPromise<AccessToken> {
   const tokenRequest = {
     'grant_type': 'authorization_code',
     'client_id': 1,
-    'client_secret': '',
+    'client_secret': 'euGx3WEC2',
     'code': authResponse.url.split('code=')[1],
     'redirect_uri': 'https://asm.ca.com',
   }
