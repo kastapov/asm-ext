@@ -20,9 +20,12 @@ export class SimpleChartComponent implements OnInit {
   ngOnInit(): void {
     this.options = {
       chart: {
-        height: 70,
+        height: 15,
         toolbar: {
           show: false
+        },
+        sparkline: {
+          enabled: true
         }
       },
       yaxis: {

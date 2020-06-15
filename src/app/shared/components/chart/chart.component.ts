@@ -44,7 +44,6 @@ export class ChartComponent implements OnInit, OnChanges {
       const options = _.merge(this.generateOptions(), this.inputOptions);
       const seriesTransformer: ITransformer = this.getTransformerForSeries();
       options.series = seriesTransformer.transformData(changes.stats.currentValue);
-      console.log(options.series);
       this.chartOptions = options;
     }
   }
