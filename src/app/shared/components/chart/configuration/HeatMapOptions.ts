@@ -12,7 +12,7 @@ export const HeatMapOptions: Partial<ChartOptions> = {
           {
             from: 0,
             to: 0,
-            color: "#F44336"
+            color: "#00A100"
           },
           {
             from: 1,
@@ -27,7 +27,7 @@ export const HeatMapOptions: Partial<ChartOptions> = {
           {
             from: 99,
             to: 100,
-            color: "#4CAF50"
+            color: "#FF0000"
           }
         ]
       }
