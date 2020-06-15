@@ -7,8 +7,10 @@ import {
   ApexTitleSubtitle,
   ApexXAxis,
   ApexPlotOptions,
+  ApexLegend,
   ApexYAxis,
-  ApexFill
+  ApexFill,
+  ApexTooltip
 } from 'ng-apexcharts';
 
 export type ChartOptions = {
@@ -24,4 +26,6 @@ export type ChartOptions = {
   colors: string[];
   fill: ApexFill;
   labels: string[];
+  legend: ApexLegend;
+  tooltip: ApexTooltip;
 };

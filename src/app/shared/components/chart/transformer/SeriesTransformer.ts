@@ -2,9 +2,10 @@ import { ITransformer } from './ITransformer';
 import { IStatistic } from '../../../../types/statistic/IStatistic';
 import { Series } from '../../../../types/chart/Series';
 import { DataPoint } from '../../../../types/chart/DataPoint';
+import * as moment from 'moment';
 
 export abstract class SeriesTransformer implements ITransformer {
-  public transformData(input: Array<IStatistic>): Array<Series> {
+  public transformData(input: Array<IStatistic>): Array<number|Series> {
     if (input === undefined) {
       return [];
     }

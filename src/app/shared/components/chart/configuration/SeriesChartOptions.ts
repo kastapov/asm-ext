@@ -8,6 +8,12 @@ export const SeriesChartOptions: Partial<ChartOptions> = {
         const date = moment(value);
         return date.utc().format('DD MMM HH:mm');
       }
-    }
+    },
+    type: "datetime"
   },
+  tooltip:{
+    x: {
+      show: true
+    }
+  }
 }

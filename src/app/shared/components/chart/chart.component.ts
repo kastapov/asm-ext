@@ -11,6 +11,10 @@ import { SeriesChartOptions } from './configuration/SeriesChartOptions';
 import { GeneralOptions } from './configuration/GeneralOptions';
 import { GaugePointDataTransformer } from './transformer/GaugePointDataTransformer';
 import { GaugeOptions } from './configuration/GaugeOptions';
+import { AreaOptions } from './configuration/AreaOptions';
+import { AreaSeriesDataTransformer } from './transformer/AreaSeriesDataTransformer';
+import { ActivityGaugeSeriesDataTransformer } from './transformer/ActivityGaugeSeriesDataTransformer';
+import { ActivityGaugeOptions } from './configuration/ActivityGaugeOptions';
 
 @Component({
   selector: 'app-chart',
@@ -40,6 +44,7 @@ export class ChartComponent implements OnInit, OnChanges {
       const options = _.merge(this.generateOptions(), this.inputOptions);
       const seriesTransformer: ITransformer = this.getTransformerForSeries();
       options.series = seriesTransformer.transformData(changes.stats.currentValue);
+      console.log(options.series);
       this.chartOptions = options;
     }
   }
@@ -51,13 +56,13 @@ export class ChartComponent implements OnInit, OnChanges {
         options = [{...SeriesChartOptions}, {...HeatMapOptions}];
         break
       case ChartTypeEnum.STACKED_BAR:
-        options = [{...SeriesChartOptions}, {...HeatMapOptions}];
+        options = [{...SeriesChartOptions}, {...AreaOptions}];
         break
       case ChartTypeEnum.GAUGE:
         options = [{...GaugeOptions}];
         break
       case ChartTypeEnum.ACTIVITY_GAUGE:
-        options = [{...SeriesChartOptions}, {...HeatMapOptions}];
+        options = [{...SeriesChartOptions}, {...ActivityGaugeOptions}];
         break
     }
     return _.merge({...GeneralOptions}, ...options, {...this.inputOptions});
@@ -70,9 +75,9 @@ export class ChartComponent implements OnInit, OnChanges {
       case ChartTypeEnum.GAUGE:
         return new GaugePointDataTransformer();
       case ChartTypeEnum.ACTIVITY_GAUGE:
-        return new HeatMapSeriesDataTransformer();
+        return new ActivityGaugeSeriesDataTransformer();
       case ChartTypeEnum.STACKED_BAR:
-        return new HeatMapSeriesDataTransformer();
+        return new AreaSeriesDataTransformer();
     }
   }
 }

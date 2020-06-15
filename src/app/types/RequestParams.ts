@@ -7,9 +7,8 @@ export class RequestParams {
     for (let [key, value] of Object.entries(this)) {
       if (value !== undefined) {
         if (value instanceof Array) {
-          value.forEach(item => {
-            params = params.append(`${String(key)}`, String(item));
-          });
+          debugger;
+            params = params.append(`${String(key)}`, value.join(','));
         } else {
           params = params.append(String(key), String(value));
         }

@@ -1,3 +1,5 @@
+import * as moment from 'moment';
+
 export class DateUtil {
   public static getTodayDateISO(): string {
     return DateUtil.toISOString(new Date());
@@ -15,5 +17,10 @@ export class DateUtil {
 
   public static ISOToDate(date: string): Date {
     return new Date(Date.parse(date));
+  }
+
+  static formatDateTimeline(timestamp: string): string {
+    const date = moment(timestamp);
+    return date.utc().format('DD MMM HH:mm');
   }
 }

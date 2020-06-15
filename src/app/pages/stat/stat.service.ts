@@ -71,7 +71,10 @@ export class StatService {
   private createRequestForSeries(monitors: Array<number|string>): StatisticRequest {
     const period: PeriodEnum = ObservingPeriodsMapping[this.configService.config.observingDuration];
     const dateFrom = DateUtil.getDateSubMinutesISO(this.configService.config.observingDuration);
-    return new StatisticRequest(dateFrom, period, monitors).groupRequest.MONITOR();
+    if (this.isStatForMonitors() || this.configService.config.statConfig.metric === MetricEnum.UPTIME) {
+      return new StatisticRequest(dateFrom, period, monitors).groupRequest.MONITOR();
+    }
+    return new StatisticRequest(dateFrom, period, monitors);
   }
 
   private createRequestForPoint(monitors: Array<number|string>): StatisticRequest {
