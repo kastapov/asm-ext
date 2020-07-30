@@ -2,9 +2,9 @@
 
 Simple, intuitive, customizable, Chrome Extension 'ASM EXT' to aggregate and provide the most relevant and significant information about your monitors' statuses, checks, failures, etc.
 
-![Product Image](https://github.com/kastapov/asm-ext/blob/mater/product.png?raw=true)
+![Product Image](https://github.com/kastapov/asm-ext/blob/master/product.png?raw=true)
 
-![Product Animation](https://github.com/kastapov/asm-ext/blob/mater/product-animated.gif?raw=true)
+![Product Animation](https://github.com/kastapov/asm-ext/blob/master/product-animated.gif?raw=true)
 
 ## Prerequisites
 
