@@ -1,5 +1,11 @@
 # ASM EXT
 
+Simple, intuitive, customizable, Chrome Extension 'ASM EXT' to aggregate and provide the most relevant and significant information about your monitors' statuses, checks, failures, etc.
+
+![Product Image](https://github.com/kastapov/asm-ext/blob/mater/product.png?raw=true)
+
+![Product Animation](https://github.com/kastapov/asm-ext/blob/mater/product-animated.gif?raw=true)
+
 ## Prerequisites
 
 * [npm](https://www.npmjs.com/)
@@ -20,3 +26,6 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
     * In the Chrome toolbar an ASM logo should have been added, click on it
     * Login to the Extension using your ASM credentials 
     * Complete the login process and be aware of ASM monitorng status in shorthand!
+
+
+git filter-branch --tree-filter 'sed -i "/euGx3WEC2/ d" filename' -- --all
